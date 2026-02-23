@@ -23,36 +23,9 @@ A multi-node experiment project for validating stability, latency, and scalabili
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    C[Client / Load Generator] --> I[Ingress :8080]
-
-    subgraph Backend Tier :3000
-        direction LR
-        B1[Node-1 Backend]
-        B2[Node-2 Backend]
-        B3[Node-3 Backend]
-    end
-
-    subgraph KVS Tier :4000
-        direction LR
-        K1[Node-1 KVS]
-        K2[Node-2 KVS]
-        K3[Node-3 KVS]
-    end
-
-    I --> B1
-    I --> B2
-    I --> B3
-
-    B1 --> K1
-    B2 --> K2
-    B3 --> K3
-
-    K1 --- K2
-    K2 --- K3
-    K3 --- K1
-```
+<p align="center">
+  <img src="./image/diagram.png" alt="Cluster architecture diagram" width="1000" />
+</p>
 
 ## Key Features
 
