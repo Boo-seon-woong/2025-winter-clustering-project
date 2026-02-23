@@ -25,36 +25,33 @@
 
 ```mermaid
 flowchart TB
-  C[Client / Load Generator] --> I[Ingress :8080]
+    C[Client / Load Generator] --> I[Ingress :8080]
 
-  subgraph BT[Backend Tier :3000]
-    direction LR
-    B3[Node-3 Backend]
-    B2[Node-2 Backend]
-    B1[Node-1 Backend]
-  end
-
-  subgraph KT[KVS Tier :4000]
-    direction TB
-    subgraph KTOP[ ]
-      direction LR
-      K3[Node-3 KVS :4000]
-      K1[Node-1 KVS :4000]
+    subgraph Backend Tier :3000
+        direction LR
+        B1[Node-1 Backend]
+        B2[Node-2 Backend]
+        B3[Node-3 Backend]
     end
-    K2[Node-2 KVS :4000]
-  end
 
-  I --> B3
-  I --> B2
-  I --> B1
-  B3 --> K3
-  B2 --> K2
-  B1 --> K1
-  K3 <--> K1
-  K1 <--> K2
-  K2 <--> K3
+    subgraph KVS Tier :4000
+        direction LR
+        K1[Node-1 KVS]
+        K2[Node-2 KVS]
+        K3[Node-3 KVS]
+    end
 
-  style KTOP fill:transparent,stroke:transparent
+    I --> B1
+    I --> B2
+    I --> B3
+
+    B1 --> K1
+    B2 --> K2
+    B3 --> K3
+
+    K1 --- K2
+    K2 --- K3
+    K3 --- K1
 ```
 
 ## 핵심 특징
