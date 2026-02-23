@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@300;400;600;700&display=swap');
+
+:root {
+  --bg-0: #050709;
+  --bg-1: #0b0f12;
+  --bg-2: #0f1a1d;
+  --card: rgba(16, 23, 28, 0.88);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text: #e7edf3;
+  --muted: #9aa6b2;
+  --accent: #ff8b3d;
+  --accent-2: #f36a2d;
+  --ghost: rgba(255, 255, 255, 0.08);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Manrope', 'Trebuchet MS', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 15% 15%, rgba(24, 80, 72, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(170, 120, 40, 0.12), transparent 55%),
+    radial-gradient(1000px 800px at 70% 85%, rgba(24, 60, 72, 0.2), transparent 60%),
+    linear-gradient(160deg, var(--bg-0), var(--bg-1) 40%, var(--bg-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.wrap {
+  width: min(980px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: min(520px, 100%);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.card.wide {
+  width: min(880px, 100%);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
+h1 {
+  font-family: 'Gloock', 'Georgia', serif;
+  font-size: 32px;
+  margin: 0 0 6px;
+  letter-spacing: 0.5px;
+}
+
+.sub {
+  color: var(--muted);
+  margin: 0 0 24px;
+  font-size: 15px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  background: rgba(15, 20, 24, 0.9);
+  color: var(--text);
+  outline: none;
+}
+
+textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  border-color: rgba(255, 139, 61, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 139, 61, 0.15);
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #1b0f08;
+  box-shadow: 0 10px 24px rgba(255, 120, 42, 0.28);
+}
+
+.btn.ghost {
+  background: var(--ghost);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.error {
+  color: #ffb4a2;
+  background: rgba(120, 30, 18, 0.25);
+  border: 1px solid rgba(255, 180, 162, 0.2);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+.stat {
+  color: #6fe5d6;
+  font-weight: 600;
+  margin: 0 0 18px;
+  font-size: 16px;
+}
+
+.posts {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.post {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: rgba(10, 14, 18, 0.7);
+}
+
+.post h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.post a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.post a:hover {
+  color: var(--accent);
+}
+
+.post span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row .btn {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 24px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boo Archive - New Post</title>
+  <link rel="stylesheet" href="/assets/app.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card wide">
+      <h1>New Post</h1>
+      <div class="error" id="error"></div>
+      <form id="new-form">
+        <div class="field">
+          <input id="post-title" placeholder="title">
+        </div>
+        <div class="field">
+          <textarea id="post-content" placeholder="content"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn primary" type="submit">Post</button>
+          <button class="btn ghost" type="button" id="back">Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/assets/api.js"></script>
+  <script src="/assets/new.js"></script>
+</body>
+</html>

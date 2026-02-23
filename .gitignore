@@ -1,0 +1,10 @@
+# Dependency code
+**/node_modules/
+
+# Environment files (commit .env.example instead)
+**/.env
+!**/.env.example
+
+# Runtime DB contents under node (keep directory structure)
+node/**/db/**
+!node/**/db/

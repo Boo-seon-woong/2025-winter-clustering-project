@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boo Archive - Login</title>
+  <link rel="stylesheet" href="/assets/app.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Boo Archive</h1>
+      <p class="sub">Login</p>
+      <div class="error" id="error"></div>
+      <form id="login-form">
+        <div class="field">
+          <input id="login-email" placeholder="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <input id="login-password" placeholder="password" type="password" autocomplete="current-password">
+        </div>
+        <button class="btn primary" type="submit">Login</button>
+      </form>
+      <div style="height:10px"></div>
+      <button class="btn ghost" id="go-register">Register</button>
+    </div>
+  </div>
+  <script src="/assets/api.js"></script>
+  <script src="/assets/login.js"></script>
+</body>
+</html>

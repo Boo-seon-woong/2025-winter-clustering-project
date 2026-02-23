@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/kvsd.dir/main.cc.o CMakeFiles/kvsd.dir/kvs.cc.o -o kvsd  /usr/lib/x86_64-linux-gnu/librocksdb.so /usr/lib/x86_64-linux-gnu/libzstd.so /usr/lib/x86_64-linux-gnu/libsnappy.so /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libbz2.so /usr/lib/x86_64-linux-gnu/liblz4.so 
