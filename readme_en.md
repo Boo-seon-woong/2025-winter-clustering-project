@@ -24,7 +24,7 @@ A multi-node experiment project for validating stability, latency, and scalabili
 ## Architecture
 
 <p align="center">
-  <img src="./img/diagram.png" alt="Cluster architecture diagram" width="1000" />
+  <img src="./img/Diagram.png" alt="Cluster architecture diagram" width="1000" />
 </p>
 
 ## Key Features
