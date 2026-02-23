@@ -24,7 +24,7 @@
 ## 아키텍처
 
 <p align="center">
-  <img src="./image/diagram.png" alt="클러스터 아키텍처 다이어그램" width="1000" />
+  <img src="./img/diagram.png" alt="클러스터 아키텍처 다이어그램" width="1000" />
 </p>
 
 ## 핵심 특징
