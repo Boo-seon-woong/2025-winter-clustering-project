@@ -29,27 +29,32 @@ flowchart TB
 
   subgraph BT[Backend Tier :3000]
     direction LR
-    B1[Node-1 Backend]
-    B2[Node-2 Backend]
     B3[Node-3 Backend]
+    B2[Node-2 Backend]
+    B1[Node-1 Backend]
   end
 
   subgraph KT[KVS Tier :4000]
-    direction LR
-    K1[Node-1 KVS :4000]
+    direction TB
+    subgraph KTOP[ ]
+      direction LR
+      K3[Node-3 KVS :4000]
+      K1[Node-1 KVS :4000]
+    end
     K2[Node-2 KVS :4000]
-    K3[Node-3 KVS :4000]
   end
 
-  I --> B1
-  I --> B2
   I --> B3
-  B1 --> K1
-  B2 --> K2
+  I --> B2
+  I --> B1
   B3 --> K3
+  B2 --> K2
+  B1 --> K1
+  K3 <--> K1
   K1 <--> K2
   K2 <--> K3
-  K3 <--> K1
+
+  style KTOP fill:transparent,stroke:transparent
 ```
 
 ## Key Features
