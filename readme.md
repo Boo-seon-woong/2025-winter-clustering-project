@@ -24,17 +24,32 @@
 ## 아키텍처
 
 ```mermaid
-flowchart LR
+flowchart TB
   C[Client / Load Generator] --> I[Ingress :8080]
-  I --> B1[Node-1 Backend :3000]
-  I --> B2[Node-2 Backend :3000]
-  I --> B3[Node-3 Backend :3000]
-  B1 --> K1[Node-1 KVS :4000]
-  B2 --> K2[Node-2 KVS :4000]
-  B3 --> K3[Node-3 KVS :4000]
-  K1 --- K2
-  K2 --- K3
-  K3 --- K1
+
+  subgraph BT[Backend Tier :3000]
+    direction LR
+    B1[Node-1 Backend]
+    B2[Node-2 Backend]
+    B3[Node-3 Backend]
+  end
+
+  subgraph KT[KVS Tier :4000]
+    direction LR
+    K1[Node-1 KVS :4000]
+    K2[Node-2 KVS :4000]
+    K3[Node-3 KVS :4000]
+  end
+
+  I --> B1
+  I --> B2
+  I --> B3
+  B1 --> K1
+  B2 --> K2
+  B3 --> K3
+  K1 <--> K2
+  K2 <--> K3
+  K3 <--> K1
 ```
 
 ## 핵심 특징
