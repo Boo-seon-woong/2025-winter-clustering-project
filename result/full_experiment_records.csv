@@ -1,0 +1,369 @@
+filename,line_number,content
+1000_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1000 (single-run mode)
+1000_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1000_3node.txt,3,[progress users=1000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1000_3node.txt,4,[progress users=1000 t=10s] login_ok=1000/1000 (100.00%) cycle_ok=4999/5000 (99.98%) post_p95=760.00ms get_p95=151.00ms
+1000_3node.txt,5,[progress users=1000 t=15s] login_ok=1000/1000 (100.00%) cycle_ok=9999/10000 (99.99%) post_p95=601.00ms get_p95=128.00ms
+1000_3node.txt,6,[progress users=1000 t=20s] login_ok=1000/1000 (100.00%) cycle_ok=14999/15000 (99.99%) post_p95=278.00ms get_p95=103.00ms
+1000_3node.txt,7,[progress users=1000 t=25s] login_ok=1000/1000 (100.00%) cycle_ok=19999/20000 (100.00%) post_p95=186.00ms get_p95=76.00ms
+1000_3node.txt,8,[progress users=1000 t=30s] login_ok=1000/1000 (100.00%) cycle_ok=24999/25000 (100.00%) post_p95=138.00ms get_p95=60.00ms
+1000_3node.txt,9,
+1000_3node.txt,10,--- stage users=1000 pass=yes ---
+1000_3node.txt,11,login_ok=1000/1000 (100.00%) login_fail=0
+1000_3node.txt,12,cycle_ok=29999/30000 (100.00%) cycle_fail=1
+1000_3node.txt,13,
+1000_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1000_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1000_3node.txt,16,login            1000     1000        0        0   100.00%    126.42    126.42      6.00    724.00    533.00    679.00    724.00     1000        0        0        0
+1000_3node.txt,17,create_post     30000    29999        1        0   100.00%     33.50     33.50      1.00   1398.00    117.00    732.00   1374.00    29999        0        0        1
+1000_3node.txt,18,list_posts      30000    30000        0        0   100.00%     13.91     13.91      0.00    288.00     52.00    147.00    234.00    30000        0        0        0
+1000_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1000 (single-run mode)
+1000_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1000_single.txt,3,[progress users=1000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1000_single.txt,4,[progress users=1000 t=10s] login_ok=1000/1000 (100.00%) cycle_ok=5000/5000 (100.00%) post_p95=575.00ms get_p95=164.00ms
+1000_single.txt,5,[progress users=1000 t=15s] login_ok=1000/1000 (100.00%) cycle_ok=10000/10000 (100.00%) post_p95=426.00ms get_p95=138.00ms
+1000_single.txt,6,[progress users=1000 t=20s] login_ok=1000/1000 (100.00%) cycle_ok=15000/15000 (100.00%) post_p95=315.00ms get_p95=125.00ms
+1000_single.txt,7,[progress users=1000 t=25s] login_ok=1000/1000 (100.00%) cycle_ok=20000/20000 (100.00%) post_p95=200.00ms get_p95=113.00ms
+1000_single.txt,8,[progress users=1000 t=30s] login_ok=1000/1000 (100.00%) cycle_ok=24999/25000 (100.00%) post_p95=172.00ms get_p95=101.00ms
+1000_single.txt,9,
+1000_single.txt,10,--- stage users=1000 pass=yes ---
+1000_single.txt,11,login_ok=1000/1000 (100.00%) login_fail=0
+1000_single.txt,12,cycle_ok=29989/30000 (99.96%) cycle_fail=11
+1000_single.txt,13,
+1000_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1000_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1000_single.txt,16,login            1000     1000        0        0   100.00%    136.62    136.62     18.00    604.00    444.00    523.00    577.00     1000        0        0        0
+1000_single.txt,17,create_post     30000    29989       11        0    99.96%     68.84     68.84      1.00    670.00    146.00    559.00    641.00    29989        0        0        0
+1000_single.txt,18,list_posts      30000    30000        0        0   100.00%     38.86     38.86      1.00    235.00     92.00    158.00    219.00    30000        0        0        0
+1250_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1250 (single-run mode)
+1250_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1250_3node.txt,3,[progress users=1250 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1250_3node.txt,4,[progress users=1250 t=10s] login_ok=1250/1250 (100.00%) cycle_ok=6250/6250 (100.00%) post_p95=450.00ms get_p95=206.00ms
+1250_3node.txt,5,[progress users=1250 t=15s] login_ok=1250/1250 (100.00%) cycle_ok=12500/12500 (100.00%) post_p95=377.00ms get_p95=148.00ms
+1250_3node.txt,6,[progress users=1250 t=20s] login_ok=1250/1250 (100.00%) cycle_ok=18746/18750 (99.98%) post_p95=295.00ms get_p95=120.00ms
+1250_3node.txt,7,[progress users=1250 t=25s] login_ok=1250/1250 (100.00%) cycle_ok=24995/25000 (99.98%) post_p95=226.00ms get_p95=102.00ms
+1250_3node.txt,8,[progress users=1250 t=30s] login_ok=1250/1250 (100.00%) cycle_ok=31245/31250 (99.98%) post_p95=180.00ms get_p95=91.00ms
+1250_3node.txt,9,
+1250_3node.txt,10,--- stage users=1250 pass=yes ---
+1250_3node.txt,11,login_ok=1250/1250 (100.00%) login_fail=0
+1250_3node.txt,12,cycle_ok=37495/37500 (99.99%) cycle_fail=5
+1250_3node.txt,13,
+1250_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1250_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1250_3node.txt,16,login            1250     1250        0        0   100.00%     76.13     76.13      7.00    213.00    192.00    202.00    213.00     1250        0        0        0
+1250_3node.txt,17,create_post     37500    37495        5        0    99.99%     38.37     38.37      1.00   1698.00    146.00    416.00   1631.00    37495        0        0        1
+1250_3node.txt,18,list_posts      37500    37500        0        0   100.00%     19.73     19.73      0.00    370.00     77.00    197.00    293.00    37500        0        0        0
+1250_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1250 (single-run mode)
+1250_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1250_single.txt,3,[progress users=1250 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1250_single.txt,4,[progress users=1250 t=10s] login_ok=1250/1250 (100.00%) cycle_ok=5881/6044 (97.30%) post_p95=634.00ms get_p95=486.00ms
+1250_single.txt,5,[progress users=1250 t=15s] login_ok=1250/1250 (100.00%) cycle_ok=12228/12391 (98.68%) post_p95=564.00ms get_p95=436.00ms
+1250_single.txt,6,[progress users=1250 t=20s] login_ok=1250/1250 (100.00%) cycle_ok=18465/18628 (99.12%) post_p95=546.00ms get_p95=408.00ms
+1250_single.txt,7,[progress users=1250 t=25s] login_ok=1250/1250 (100.00%) cycle_ok=24728/24891 (99.35%) post_p95=525.00ms get_p95=394.00ms
+1250_single.txt,8,[progress users=1250 t=30s] login_ok=1250/1250 (100.00%) cycle_ok=30978/31141 (99.48%) post_p95=510.00ms get_p95=375.00ms
+1250_single.txt,9,
+1250_single.txt,10,--- stage users=1250 pass=yes ---
+1250_single.txt,11,login_ok=1250/1250 (100.00%) login_fail=0
+1250_single.txt,12,cycle_ok=37229/37397 (99.55%) cycle_fail=168
+1250_single.txt,13,
+1250_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1250_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1250_single.txt,16,login            1250     1250        0        0   100.00%    136.42    136.42      9.00    538.00    276.00    313.00    449.00     1250        0        0        0
+1250_single.txt,17,create_post     37397    37358       39        0    99.90%    249.92    249.92      1.00   2846.00    501.00    612.00   2751.00    37358        0        0       34
+1250_single.txt,18,list_posts      37397    37268      129        0    99.66%    172.28    172.28      1.00    548.00    353.00    473.00    520.00    37268        0        0      129
+1500_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1500 (single-run mode)
+1500_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1500_3node.txt,3,[progress users=1500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1500_3node.txt,4,[progress users=1500 t=10s] login_ok=1500/1500 (100.00%) cycle_ok=7158/7158 (100.00%) post_p95=1419.00ms get_p95=444.00ms
+1500_3node.txt,5,[progress users=1500 t=15s] login_ok=1500/1500 (100.00%) cycle_ok=14663/14665 (99.99%) post_p95=693.00ms get_p95=377.00ms
+1500_3node.txt,6,[progress users=1500 t=20s] login_ok=1500/1500 (100.00%) cycle_ok=22164/22166 (99.99%) post_p95=538.00ms get_p95=317.00ms
+1500_3node.txt,7,[progress users=1500 t=25s] login_ok=1500/1500 (100.00%) cycle_ok=29660/29662 (99.99%) post_p95=458.00ms get_p95=289.00ms
+1500_3node.txt,8,[progress users=1500 t=30s] login_ok=1500/1500 (100.00%) cycle_ok=37173/37176 (99.99%) post_p95=408.00ms get_p95=266.00ms
+1500_3node.txt,9,
+1500_3node.txt,10,--- stage users=1500 pass=yes ---
+1500_3node.txt,11,login_ok=1500/1500 (100.00%) login_fail=0
+1500_3node.txt,12,cycle_ok=44689/44692 (99.99%) cycle_fail=3
+1500_3node.txt,13,
+1500_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1500_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1500_3node.txt,16,login            1500     1500        0        0   100.00%    115.40    115.40     12.00    842.00    415.00    823.00    841.00     1500        0        0        0
+1500_3node.txt,17,create_post     44692    44689        3        0    99.99%     95.93     95.93      1.00   3517.00    360.00    778.00   2972.00    44689        0        0        0
+1500_3node.txt,18,list_posts      44692    44692        0        0   100.00%     66.25     66.25      0.00    562.00    250.00    426.00    537.00    44692        0        0        0
+1500_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1500 (single-run mode)
+1500_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1500_single.txt,3,[progress users=1500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1500_single.txt,4,[progress users=1500 t=10s] login_ok=1500/1500 (100.00%) cycle_ok=6896/7024 (98.18%) post_p95=1724.00ms get_p95=429.00ms
+1500_single.txt,5,[progress users=1500 t=15s] login_ok=1500/1500 (100.00%) cycle_ok=14409/14537 (99.12%) post_p95=891.00ms get_p95=377.00ms
+1500_single.txt,6,[progress users=1500 t=20s] login_ok=1500/1500 (100.00%) cycle_ok=21909/22037 (99.42%) post_p95=703.00ms get_p95=338.00ms
+1500_single.txt,7,[progress users=1500 t=25s] login_ok=1500/1500 (100.00%) cycle_ok=29409/29537 (99.57%) post_p95=498.00ms get_p95=327.00ms
+1500_single.txt,8,[progress users=1500 t=30s] login_ok=1500/1500 (100.00%) cycle_ok=36908/37036 (99.65%) post_p95=451.00ms get_p95=309.00ms
+1500_single.txt,9,
+1500_single.txt,10,--- stage users=1500 pass=yes ---
+1500_single.txt,11,login_ok=1500/1500 (100.00%) login_fail=0
+1500_single.txt,12,cycle_ok=44408/44537 (99.71%) cycle_fail=129
+1500_single.txt,13,
+1500_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1500_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1500_single.txt,16,login            1500     1500        0        0   100.00%    130.22    130.22     11.00    584.00    500.00    572.00    579.00     1500        0        0        0
+1500_single.txt,17,create_post     44537    44464       73        0    99.84%    138.19    138.19      1.00   2360.00    416.00   1676.00   2198.00    44464        0        0       72
+1500_single.txt,18,list_posts      44537    44481       56        0    99.87%     82.54     82.54      1.00    579.00    287.00    422.00    548.00    44481        0        0       56
+1750_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1750 (single-run mode)
+1750_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1750_3node.txt,3,[progress users=1750 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1750_3node.txt,4,[progress users=1750 t=10s] login_ok=1750/1750 (100.00%) cycle_ok=8189/8189 (100.00%) post_p95=1773.00ms get_p95=152.00ms
+1750_3node.txt,5,[progress users=1750 t=15s] login_ok=1750/1750 (100.00%) cycle_ok=16976/16976 (100.00%) post_p95=1188.00ms get_p95=128.00ms
+1750_3node.txt,6,[progress users=1750 t=20s] login_ok=1750/1750 (100.00%) cycle_ok=25726/25726 (100.00%) post_p95=839.00ms get_p95=111.00ms
+1750_3node.txt,7,[progress users=1750 t=25s] login_ok=1750/1750 (100.00%) cycle_ok=34471/34476 (99.99%) post_p95=215.00ms get_p95=99.00ms
+1750_3node.txt,8,[progress users=1750 t=30s] login_ok=1750/1750 (100.00%) cycle_ok=43220/43226 (99.99%) post_p95=160.00ms get_p95=90.00ms
+1750_3node.txt,9,
+1750_3node.txt,10,--- stage users=1750 pass=yes ---
+1750_3node.txt,11,login_ok=1750/1750 (100.00%) login_fail=0
+1750_3node.txt,12,cycle_ok=51971/51977 (99.99%) cycle_fail=6
+1750_3node.txt,13,
+1750_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1750_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1750_3node.txt,16,login            1750     1750        0        0   100.00%     79.68     79.68      5.00    692.00    202.00    689.00    691.00     1750        0        0        0
+1750_3node.txt,17,create_post     51977    51971        6        0    99.99%     65.54     65.54      1.00   3064.00    132.00   1511.00   2935.00    51971        0        0        0
+1750_3node.txt,18,list_posts      51977    51977        0        0   100.00%     19.44     19.44      0.00    274.00     80.00    145.00    206.00    51977        0        0        0
+1750_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=1750 (single-run mode)
+1750_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+1750_single.txt,3,[progress users=1750 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+1750_single.txt,4,[progress users=1750 t=10s] login_ok=1750/1750 (100.00%) cycle_ok=5270/6006 (87.75%) post_p95=1538.00ms get_p95=663.00ms
+1750_single.txt,5,[progress users=1750 t=15s] login_ok=1750/1750 (100.00%) cycle_ok=13137/14409 (91.17%) post_p95=1089.00ms get_p95=667.00ms
+1750_single.txt,6,[progress users=1750 t=20s] login_ok=1750/1750 (100.00%) cycle_ok=20882/22344 (93.46%) post_p95=1028.00ms get_p95=615.00ms
+1750_single.txt,7,[progress users=1750 t=25s] login_ok=1750/1750 (100.00%) cycle_ok=26331/30252 (87.04%) post_p95=1007.00ms get_p95=566.00ms
+1750_single.txt,8,[progress users=1750 t=30s] login_ok=1750/1750 (100.00%) cycle_ok=31773/38864 (81.75%) post_p95=813.00ms get_p95=553.00ms
+1750_single.txt,9,
+1750_single.txt,10,--- stage users=1750 pass=no ---
+1750_single.txt,11,login_ok=1750/1750 (100.00%) login_fail=0
+1750_single.txt,12,cycle_ok=39767/48879 (81.36%) cycle_fail=9112
+1750_single.txt,13,
+1750_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+1750_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1750_single.txt,16,login            1750     1750        0        0   100.00%    132.45    132.45     22.00    351.00    248.00    320.00    346.00     1750        0        0        0
+1750_single.txt,17,create_post     48879    44340     4539      478    90.71%    487.35    487.35     20.00   4315.00    757.00   3018.00   4291.00    44340        0        0     4050
+1750_single.txt,18,list_posts      48879    43158     5721      223    88.30%    339.39    339.39     24.00   3652.00    539.00    833.00   3219.00    43158        0        0     5498
+2000_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=2000 (single-run mode)
+2000_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+2000_3node.txt,3,[progress users=2000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+2000_3node.txt,4,[progress users=2000 t=10s] login_ok=2000/2000 (100.00%) cycle_ok=8289/8289 (100.00%) post_p95=1478.00ms get_p95=630.00ms
+2000_3node.txt,5,[progress users=2000 t=15s] login_ok=2000/2000 (100.00%) cycle_ok=18557/18557 (100.00%) post_p95=844.00ms get_p95=534.00ms
+2000_3node.txt,6,[progress users=2000 t=20s] login_ok=2000/2000 (100.00%) cycle_ok=28803/28803 (100.00%) post_p95=767.00ms get_p95=464.00ms
+2000_3node.txt,7,[progress users=2000 t=25s] login_ok=2000/2000 (100.00%) cycle_ok=38850/38850 (100.00%) post_p95=691.00ms get_p95=416.00ms
+2000_3node.txt,8,[progress users=2000 t=30s] login_ok=2000/2000 (100.00%) cycle_ok=48848/48848 (100.00%) post_p95=621.00ms get_p95=380.00ms
+2000_3node.txt,9,
+2000_3node.txt,10,--- stage users=2000 pass=yes ---
+2000_3node.txt,11,login_ok=2000/2000 (100.00%) login_fail=0
+2000_3node.txt,12,cycle_ok=58825/58825 (100.00%) cycle_fail=0
+2000_3node.txt,13,
+2000_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+2000_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2000_3node.txt,16,login            2000     2000        0        0   100.00%    113.97    113.97     12.00    739.00    391.00    657.00    739.00     2000        0        0        0
+2000_3node.txt,17,create_post     58825    58825        0        0   100.00%    120.51    120.51      1.00   2254.00    551.00   1176.00   2139.00    58825        0        0        0
+2000_3node.txt,18,list_posts      58825    58825        0        0   100.00%     85.92     85.92      0.00   1125.00    357.00    584.00    855.00    58825        0        0        0
+2000_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=2000 (single-run mode)
+2000_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+2000_single.txt,3,[progress users=2000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+2000_single.txt,4,[progress users=2000 t=10s] login_ok=2000/2000 (100.00%) cycle_ok=4033/5798 (69.56%) post_p95=1647.00ms get_p95=813.00ms
+2000_single.txt,5,[progress users=2000 t=15s] login_ok=2000/2000 (100.00%) cycle_ok=11453/14207 (80.62%) post_p95=1411.00ms get_p95=799.00ms
+2000_single.txt,6,[progress users=2000 t=20s] login_ok=2000/2000 (100.00%) cycle_ok=15698/24005 (65.39%) post_p95=1213.00ms get_p95=736.00ms
+2000_single.txt,7,[progress users=2000 t=25s] login_ok=2000/2000 (100.00%) cycle_ok=21986/33158 (66.31%) post_p95=1135.00ms get_p95=692.00ms
+2000_single.txt,8,[progress users=2000 t=30s] login_ok=2000/2000 (100.00%) cycle_ok=26446/43142 (61.30%) post_p95=867.00ms get_p95=654.00ms
+2000_single.txt,9,
+2000_single.txt,10,--- stage users=2000 pass=no ---
+2000_single.txt,11,login_ok=2000/2000 (100.00%) login_fail=0
+2000_single.txt,12,cycle_ok=32292/54085 (59.71%) cycle_fail=21793
+2000_single.txt,13,
+2000_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+2000_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2000_single.txt,16,login            2000     2000        0        0   100.00%    124.63    124.63     41.00    336.00    268.00    323.00    333.00     2000        0        0        0
+2000_single.txt,17,create_post     54085    43124    10961      650    79.73%    501.52    501.52     60.00   5043.00    798.00   3122.00   4327.00    43124        0        0    10300
+2000_single.txt,18,list_posts      54085    39505    14580      237    73.04%    363.85    363.85      4.00   4061.00    606.00   1127.00   3206.00    39505        0        0    14343
+2500_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=2500 (single-run mode)
+2500_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+2500_3node.txt,3,[progress users=2500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+2500_3node.txt,4,[progress users=2500 t=10s] login_ok=2500/2500 (100.00%) cycle_ok=7832/8142 (96.19%) post_p95=4120.00ms get_p95=297.00ms
+2500_3node.txt,5,[progress users=2500 t=15s] login_ok=2500/2500 (100.00%) cycle_ok=15736/16477 (95.50%) post_p95=4057.00ms get_p95=557.00ms
+2500_3node.txt,6,[progress users=2500 t=20s] login_ok=2500/2500 (100.00%) cycle_ok=25639/26869 (95.42%) post_p95=3268.00ms get_p95=501.00ms
+2500_3node.txt,7,[progress users=2500 t=25s] login_ok=2500/2500 (100.00%) cycle_ok=35393/36755 (96.29%) post_p95=2027.00ms get_p95=470.00ms
+2500_3node.txt,8,[progress users=2500 t=30s] login_ok=2500/2500 (100.00%) cycle_ok=45194/46978 (96.20%) post_p95=1149.00ms get_p95=439.00ms
+2500_3node.txt,9,[progress users=2500 t=35s] login_ok=2500/2500 (100.00%) cycle_ok=56657/58880 (96.22%) post_p95=1086.00ms get_p95=414.00ms
+2500_3node.txt,10,[progress users=2500 t=40s] login_ok=2500/2500 (100.00%) cycle_ok=56763/58986 (96.23%) post_p95=1082.00ms get_p95=414.00ms
+2500_3node.txt,11,
+2500_3node.txt,12,--- stage users=2500 pass=no ---
+2500_3node.txt,13,login_ok=2500/2500 (100.00%) login_fail=0
+2500_3node.txt,14,cycle_ok=56790/59026 (96.21%) cycle_fail=2236
+2500_3node.txt,15,
+2500_3node.txt,16,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+2500_3node.txt,17,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2500_3node.txt,18,login            2500     2500        0        0   100.00%     85.30     85.30     13.00    920.00    137.00    754.00    918.00     2500        0        0        0
+2500_3node.txt,19,create_post     59026    56790     2236     2165    96.21%    474.98    474.98      1.00  35855.00   1126.00   6100.00  14198.00    56790        0        0        0
+2500_3node.txt,20,list_posts      59026    58720      306      289    99.48%    244.59    244.59      1.00  35873.00    415.00    785.00  14211.00    58720        0        0        0
+2500_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=2500 (single-run mode)
+2500_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+2500_single.txt,3,[progress users=2500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+2500_single.txt,4,[progress users=2500 t=10s] login_ok=2500/2500 (100.00%) cycle_ok=3973/7023 (56.57%) post_p95=2243.00ms get_p95=1131.00ms
+2500_single.txt,5,[progress users=2500 t=15s] login_ok=2500/2500 (100.00%) cycle_ok=9863/17086 (57.73%) post_p95=1219.00ms get_p95=951.00ms
+2500_single.txt,6,[progress users=2500 t=20s] login_ok=2500/2500 (100.00%) cycle_ok=15377/26648 (57.70%) post_p95=1063.00ms get_p95=910.00ms
+2500_single.txt,7,[progress users=2500 t=25s] login_ok=2500/2500 (100.00%) cycle_ok=20048/37571 (53.36%) post_p95=993.00ms get_p95=880.00ms
+2500_single.txt,8,[progress users=2500 t=30s] login_ok=2500/2500 (100.00%) cycle_ok=25058/48940 (51.20%) post_p95=962.00ms get_p95=849.00ms
+2500_single.txt,9,
+2500_single.txt,10,--- stage users=2500 pass=no ---
+2500_single.txt,11,login_ok=2500/2500 (100.00%) login_fail=0
+2500_single.txt,12,cycle_ok=31880/61197 (52.09%) cycle_fail=29317
+2500_single.txt,13,
+2500_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+2500_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2500_single.txt,16,login            2500     2500        0        0   100.00%    112.33    112.33      8.00    418.00    188.00    369.00    417.00     2500        0        0        0
+2500_single.txt,17,create_post     61197    44070    17127        0    72.01%    631.03    631.03     84.00   3722.00    959.00   1919.00   3646.00    44070        0        0    17127
+2500_single.txt,18,list_posts      61197    46016    15181        0    75.19%    542.24    542.24     81.00   2365.00    849.00    981.00   1303.00    46016        0        0    15181
+250_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=250 (single-run mode)
+250_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+250_3node.txt,3,[progress users=250 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+250_3node.txt,4,[progress users=250 t=10s] login_ok=250/250 (100.00%) cycle_ok=1250/1250 (100.00%) post_p95=181.00ms get_p95=169.00ms
+250_3node.txt,5,[progress users=250 t=15s] login_ok=250/250 (100.00%) cycle_ok=2500/2500 (100.00%) post_p95=162.00ms get_p95=137.00ms
+250_3node.txt,6,[progress users=250 t=20s] login_ok=250/250 (100.00%) cycle_ok=3750/3750 (100.00%) post_p95=154.00ms get_p95=122.00ms
+250_3node.txt,7,[progress users=250 t=25s] login_ok=250/250 (100.00%) cycle_ok=5000/5000 (100.00%) post_p95=141.00ms get_p95=100.00ms
+250_3node.txt,8,[progress users=250 t=30s] login_ok=250/250 (100.00%) cycle_ok=6250/6250 (100.00%) post_p95=118.00ms get_p95=85.00ms
+250_3node.txt,9,
+250_3node.txt,10,--- stage users=250 pass=yes ---
+250_3node.txt,11,login_ok=250/250 (100.00%) login_fail=0
+250_3node.txt,12,cycle_ok=7500/7500 (100.00%) cycle_fail=0
+250_3node.txt,13,
+250_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+250_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+250_3node.txt,16,login             250      250        0        0   100.00%    129.86    129.86     64.00    280.00    275.00    279.00    280.00      250        0        0        0
+250_3node.txt,17,create_post      7500     7500        0        0   100.00%     18.30     18.30      1.00    264.00     83.00    171.00    257.00     7500        0        0        0
+250_3node.txt,18,list_posts       7500     7500        0        0   100.00%     15.57     15.57      0.00    263.00     78.00    156.00    259.00     7500        0        0        0
+250_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=250 (single-run mode)
+250_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+250_single.txt,3,[progress users=250 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+250_single.txt,4,[progress users=250 t=10s] login_ok=250/250 (100.00%) cycle_ok=1250/1250 (100.00%) post_p95=218.00ms get_p95=189.00ms
+250_single.txt,5,[progress users=250 t=15s] login_ok=250/250 (100.00%) cycle_ok=2500/2500 (100.00%) post_p95=197.00ms get_p95=94.00ms
+250_single.txt,6,[progress users=250 t=20s] login_ok=250/250 (100.00%) cycle_ok=3747/3750 (99.92%) post_p95=145.00ms get_p95=74.00ms
+250_single.txt,7,[progress users=250 t=25s] login_ok=250/250 (100.00%) cycle_ok=4993/5000 (99.86%) post_p95=112.00ms get_p95=60.00ms
+250_single.txt,8,[progress users=250 t=30s] login_ok=250/250 (100.00%) cycle_ok=6235/6250 (99.76%) post_p95=98.00ms get_p95=50.00ms
+250_single.txt,9,
+250_single.txt,10,--- stage users=250 pass=yes ---
+250_single.txt,11,login_ok=250/250 (100.00%) login_fail=0
+250_single.txt,12,cycle_ok=7485/7500 (99.80%) cycle_fail=15
+250_single.txt,13,
+250_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+250_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+250_single.txt,16,login             250      250        0        0   100.00%    191.50    191.50     75.00    260.00    247.00    254.00    260.00      250        0        0        0
+250_single.txt,17,create_post      7500     7487       13        0    99.83%     35.48     35.48      2.00    290.00     81.00    212.00    280.00     7487        0        0       13
+250_single.txt,18,list_posts       7500     7498        2        0    99.97%     21.15     21.15      1.00    258.00     46.00    108.00    243.00     7498        0        0        2
+3000_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=3000 (single-run mode)
+3000_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+3000_3node.txt,3,[progress users=3000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+3000_3node.txt,4,[progress users=3000 t=10s] login_ok=3000/3000 (100.00%) cycle_ok=7131/7374 (96.70%) post_p95=4365.00ms get_p95=650.00ms
+3000_3node.txt,5,[progress users=3000 t=15s] login_ok=3000/3000 (100.00%) cycle_ok=14625/15249 (95.91%) post_p95=4218.00ms get_p95=689.00ms
+3000_3node.txt,6,[progress users=3000 t=20s] login_ok=3000/3000 (100.00%) cycle_ok=23362/24450 (95.55%) post_p95=3463.00ms get_p95=666.00ms
+3000_3node.txt,7,[progress users=3000 t=25s] login_ok=3000/3000 (100.00%) cycle_ok=32712/34019 (96.16%) post_p95=3308.00ms get_p95=634.00ms
+3000_3node.txt,8,[progress users=3000 t=30s] login_ok=3000/3000 (100.00%) cycle_ok=42107/43571 (96.64%) post_p95=1636.00ms get_p95=616.00ms
+3000_3node.txt,9,[progress users=3000 t=35s] login_ok=3000/3000 (100.00%) cycle_ok=51926/53788 (96.54%) post_p95=1533.00ms get_p95=606.00ms
+3000_3node.txt,10,[progress users=3000 t=40s] login_ok=3000/3000 (100.00%) cycle_ok=52616/54547 (96.46%) post_p95=1605.00ms get_p95=607.00ms
+3000_3node.txt,11,[progress users=3000 t=45s] login_ok=3000/3000 (100.00%) cycle_ok=52721/54836 (96.14%) post_p95=1659.00ms get_p95=612.00ms
+3000_3node.txt,12,
+3000_3node.txt,13,--- stage users=3000 pass=no ---
+3000_3node.txt,14,login_ok=3000/3000 (100.00%) login_fail=0
+3000_3node.txt,15,cycle_ok=52787/55150 (95.72%) cycle_fail=2363
+3000_3node.txt,16,
+3000_3node.txt,17,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+3000_3node.txt,18,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3000_3node.txt,19,login            3000     3000        0        0   100.00%    113.62    113.62      7.00    820.00    383.00    753.00    817.00     3000        0        0        0
+3000_3node.txt,20,create_post     55150    52799     2351     2230    95.74%    734.16    734.16      1.00  36190.00   1823.00   8167.00  20001.00    52799        0        0       27
+3000_3node.txt,21,list_posts      55150    54580      570      562    98.97%    691.81    691.81      0.00  36138.00    618.00  10202.00  20001.00    54580        0        0        0
+3000_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=3000 (single-run mode)
+3000_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+3000_single.txt,3,[progress users=3000 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+3000_single.txt,4,[progress users=3000 t=10s] login_ok=3000/3000 (100.00%) cycle_ok=4792/6715 (71.36%) post_p95=3552.00ms get_p95=762.00ms
+3000_single.txt,5,[progress users=3000 t=15s] login_ok=3000/3000 (100.00%) cycle_ok=11918/15620 (76.30%) post_p95=1552.00ms get_p95=777.00ms
+3000_single.txt,6,[progress users=3000 t=20s] login_ok=3000/3000 (100.00%) cycle_ok=18341/24946 (73.52%) post_p95=1371.00ms get_p95=777.00ms
+3000_single.txt,7,[progress users=3000 t=25s] login_ok=3000/3000 (100.00%) cycle_ok=24793/34958 (70.92%) post_p95=978.00ms get_p95=763.00ms
+3000_single.txt,8,[progress users=3000 t=30s] login_ok=3000/3000 (100.00%) cycle_ok=30006/45706 (65.65%) post_p95=902.00ms get_p95=754.00ms
+3000_single.txt,9,[progress users=3000 t=35s] login_ok=3000/3000 (100.00%) cycle_ok=35876/57490 (62.40%) post_p95=859.00ms get_p95=745.00ms
+3000_single.txt,10,[progress users=3000 t=40s] login_ok=3000/3000 (100.00%) cycle_ok=36447/58312 (62.50%) post_p95=884.00ms get_p95=746.00ms
+3000_single.txt,11,[progress users=3000 t=45s] login_ok=3000/3000 (100.00%) cycle_ok=36672/58633 (62.54%) post_p95=947.00ms get_p95=748.00ms
+3000_single.txt,12,
+3000_single.txt,13,--- stage users=3000 pass=no ---
+3000_single.txt,14,login_ok=3000/3000 (100.00%) login_fail=0
+3000_single.txt,15,cycle_ok=36831/58827 (62.61%) cycle_fail=21996
+3000_single.txt,16,
+3000_single.txt,17,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+3000_single.txt,18,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3000_single.txt,19,login            3000     3000        0        0   100.00%    109.56    109.56     13.00    380.00    190.00    305.00    379.00     3000        0        0        0
+3000_single.txt,20,create_post     58827    45903    12924     1439    78.03%    874.21    874.21     71.00  36464.00    965.00   8110.00  20001.00    45903        0        0    11485
+3000_single.txt,21,list_posts      58827    45191    13636      859    76.82%    623.94    623.94      2.00  36110.00    749.00   5107.00  20001.00    45191        0        0    12777
+500_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=500 (single-run mode)
+500_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+500_3node.txt,3,[progress users=500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+500_3node.txt,4,[progress users=500 t=10s] login_ok=500/500 (100.00%) cycle_ok=2500/2500 (100.00%) post_p95=206.00ms get_p95=95.00ms
+500_3node.txt,5,[progress users=500 t=15s] login_ok=500/500 (100.00%) cycle_ok=5000/5000 (100.00%) post_p95=159.00ms get_p95=71.00ms
+500_3node.txt,6,[progress users=500 t=20s] login_ok=500/500 (100.00%) cycle_ok=7500/7500 (100.00%) post_p95=101.00ms get_p95=60.00ms
+500_3node.txt,7,[progress users=500 t=25s] login_ok=500/500 (100.00%) cycle_ok=10000/10000 (100.00%) post_p95=80.00ms get_p95=53.00ms
+500_3node.txt,8,[progress users=500 t=30s] login_ok=500/500 (100.00%) cycle_ok=12500/12500 (100.00%) post_p95=66.00ms get_p95=46.00ms
+500_3node.txt,9,
+500_3node.txt,10,--- stage users=500 pass=yes ---
+500_3node.txt,11,login_ok=500/500 (100.00%) login_fail=0
+500_3node.txt,12,cycle_ok=14999/15000 (99.99%) cycle_fail=1
+500_3node.txt,13,
+500_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+500_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+500_3node.txt,16,login             500      500        0        0   100.00%    100.88    100.88      2.00    245.00    236.00    241.00    245.00      500        0        0        0
+500_3node.txt,17,create_post     15000    14999        1        0    99.99%     18.32     18.32      1.00    339.00     57.00    200.00    333.00    14999        0        0        0
+500_3node.txt,18,list_posts      15000    15000        0        0   100.00%     12.63     12.63      0.00    188.00     39.00     89.00    150.00    15000        0        0        0
+500_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=500 (single-run mode)
+500_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+500_single.txt,3,[progress users=500 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+500_single.txt,4,[progress users=500 t=10s] login_ok=500/500 (100.00%) cycle_ok=2500/2500 (100.00%) post_p95=558.00ms get_p95=220.00ms
+500_single.txt,5,[progress users=500 t=15s] login_ok=500/500 (100.00%) cycle_ok=5000/5000 (100.00%) post_p95=495.00ms get_p95=184.00ms
+500_single.txt,6,[progress users=500 t=20s] login_ok=500/500 (100.00%) cycle_ok=7500/7500 (100.00%) post_p95=345.00ms get_p95=151.00ms
+500_single.txt,7,[progress users=500 t=25s] login_ok=500/500 (100.00%) cycle_ok=10000/10000 (100.00%) post_p95=238.00ms get_p95=141.00ms
+500_single.txt,8,[progress users=500 t=30s] login_ok=500/500 (100.00%) cycle_ok=12500/12500 (100.00%) post_p95=221.00ms get_p95=131.00ms
+500_single.txt,9,
+500_single.txt,10,--- stage users=500 pass=yes ---
+500_single.txt,11,login_ok=500/500 (100.00%) login_fail=0
+500_single.txt,12,cycle_ok=15000/15000 (100.00%) cycle_fail=0
+500_single.txt,13,
+500_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+500_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+500_single.txt,16,login             500      500        0        0   100.00%    168.78    168.78     54.00    271.00    266.00    271.00    271.00      500        0        0        0
+500_single.txt,17,create_post     15000    15000        0        0   100.00%     92.62     92.62      1.00    738.00    203.00    536.00    731.00    15000        0        0        0
+500_single.txt,18,list_posts      15000    15000        0        0   100.00%     50.70     50.70      1.00    535.00    120.00    218.00    296.00    15000        0        0        0
+750_3node.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=750 (single-run mode)
+750_3node.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+750_3node.txt,3,[progress users=750 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+750_3node.txt,4,[progress users=750 t=10s] login_ok=750/750 (100.00%) cycle_ok=3750/3750 (100.00%) post_p95=528.00ms get_p95=131.00ms
+750_3node.txt,5,[progress users=750 t=15s] login_ok=750/750 (100.00%) cycle_ok=7500/7500 (100.00%) post_p95=345.00ms get_p95=104.00ms
+750_3node.txt,6,[progress users=750 t=20s] login_ok=750/750 (100.00%) cycle_ok=11245/11250 (99.96%) post_p95=222.00ms get_p95=96.00ms
+750_3node.txt,7,[progress users=750 t=25s] login_ok=750/750 (100.00%) cycle_ok=14995/15000 (99.97%) post_p95=151.00ms get_p95=87.00ms
+750_3node.txt,8,[progress users=750 t=30s] login_ok=750/750 (100.00%) cycle_ok=18745/18750 (99.97%) post_p95=126.00ms get_p95=81.00ms
+750_3node.txt,9,
+750_3node.txt,10,--- stage users=750 pass=yes ---
+750_3node.txt,11,login_ok=750/750 (100.00%) login_fail=0
+750_3node.txt,12,cycle_ok=22495/22500 (99.98%) cycle_fail=5
+750_3node.txt,13,
+750_3node.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+750_3node.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+750_3node.txt,16,login             750      750        0        0   100.00%    128.00    128.00     11.00    620.00    573.00    615.00    620.00      750        0        0        0
+750_3node.txt,17,create_post     22500    22495        5        0    99.98%     35.68     35.68      1.00    639.00    103.00    482.00    620.00    22495        0        0        0
+750_3node.txt,18,list_posts      22500    22495        5        0    99.98%     23.30     23.30      0.00    259.00     75.00    128.00    202.00    22495        0        0        0
+750_single.txt,1,[config] base_url=http://45.130.166.135:8080 workers=4 duration_sec=30 users=750 (single-run mode)
+750_single.txt,2,[criteria] cycle_ok>=0.98 login_ok>=0.98 post_p95<=1500ms get_p95<=1500ms
+750_single.txt,3,[progress users=750 t=5s] login_ok=0/0 (0.00%) cycle_ok=0/0 (0.00%) post_p95=0.00ms get_p95=0.00ms
+750_single.txt,4,[progress users=750 t=10s] login_ok=750/750 (100.00%) cycle_ok=3750/3750 (100.00%) post_p95=372.00ms get_p95=138.00ms
+750_single.txt,5,[progress users=750 t=15s] login_ok=750/750 (100.00%) cycle_ok=7500/7500 (100.00%) post_p95=340.00ms get_p95=105.00ms
+750_single.txt,6,[progress users=750 t=20s] login_ok=750/750 (100.00%) cycle_ok=11250/11250 (100.00%) post_p95=244.00ms get_p95=88.00ms
+750_single.txt,7,[progress users=750 t=25s] login_ok=750/750 (100.00%) cycle_ok=15000/15000 (100.00%) post_p95=146.00ms get_p95=77.00ms
+750_single.txt,8,[progress users=750 t=30s] login_ok=750/750 (100.00%) cycle_ok=18750/18750 (100.00%) post_p95=106.00ms get_p95=67.00ms
+750_single.txt,9,
+750_single.txt,10,--- stage users=750 pass=yes ---
+750_single.txt,11,login_ok=750/750 (100.00%) login_fail=0
+750_single.txt,12,cycle_ok=22500/22500 (100.00%) cycle_fail=0
+750_single.txt,13,
+750_single.txt,14,metric          total       ok     fail  timeout   ok_rate       avg      mean       min       max       p95       p99     p99.9      2xx      3xx      4xx      5xx
+750_single.txt,15,--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+750_single.txt,16,login             750      750        0        0   100.00%    163.29    163.29     47.00    331.00    305.00    319.00    331.00      750        0        0        0
+750_single.txt,17,create_post     22500    22500        0        0   100.00%     47.53     47.53      1.00    496.00     95.00    367.00    470.00    22500        0        0        0
+750_single.txt,18,list_posts      22500    22500        0        0   100.00%     26.21     26.21      1.00    225.00     62.00    125.00    219.00    22500        0        0        0
