@@ -13,6 +13,38 @@
 
 </div>
 
+## 전체 목차
+
+- [한눈에 보기](#toc-overview)
+- [아키텍처](#toc-architecture)
+- [핵심 특징](#toc-key-features)
+- [저장소 구조](#toc-repo-layout)
+- [빠른 시작](#toc-quick-start)
+- [사전 준비](#toc-quick-start-1)
+- [환경 파일 준비](#toc-quick-start-2)
+- [Node 의존성 설치](#toc-quick-start-3)
+- [KVS 빌드](#toc-quick-start-4)
+- [실행 순서](#toc-run-order)
+- [KVS 실행](#toc-run-order-1)
+- [Backend 실행](#toc-run-order-2)
+- [Ingress 실행](#toc-run-order-3)
+- [헬스체크](#toc-run-order-4)
+- [실험 세팅](#toc-experiment-setup)
+- [계정 시드 생성](#toc-experiment-setup-a)
+- [부하 테스트](#toc-experiment-setup-b)
+- [환경변수 파일 가이드](#toc-env-guide)
+- [실험 과정 및 결과](#toc-experiment-result)
+- [실험 인프라](#main-sec-1)
+- [실험 조건](#main-sec-2)
+- [판정 기준](#main-sec-3)
+- [핵심 결과 (CSV 집계)](#main-sec-4)
+- [성공률 그래프](#main-sec-5-1)
+- [create_post 지연시간 그래프](#main-sec-5-2)
+- [list_posts 지연시간 그래프](#main-sec-5-3)
+- [그래프 재생성](#main-sec-6)
+- [Git 추적 정책](#toc-git-policy)
+
+<a id="toc-overview"></a>
 ## 한눈에 보기
 
 | 영역 | 경로 | 역할 |
@@ -21,12 +53,14 @@
 | Node (개별 노드) | `node/` | `kvs`(C++/RocksDB) + `server/backend`(Node.js API) |
 | 실험 도구 | `stress_test/`, `create_account.js` | 부하 생성, 사용자 계정 대량 생성, 실험 반복 자동화 |
 
+<a id="toc-architecture"></a>
 ## 아키텍처
 
 <p align="center">
   <img src="./img/Diagram.png" alt="클러스터 아키텍처 다이어그램" width="1000" />
 </p>
 
+<a id="toc-key-features"></a>
 ## 핵심 특징
 
 - Ingress: least-inflight 라우팅, queue timeout 기반 load shedding, upstream circuit breaker
@@ -34,6 +68,7 @@
 - KVS: RocksDB 기반 분산 저장소, 노드 간 replication/fan-out read
 - 실험: Node 기반 경량 스트레스 테스트 + 계정 시드 스크립트
 
+<a id="toc-repo-layout"></a>
 ## 저장소 구조
 
 ```text
@@ -48,8 +83,10 @@
 └── readme_en.md             # English documentation
 ```
 
+<a id="toc-quick-start"></a>
 ## 빠른 시작
 
+<a id="toc-quick-start-1"></a>
 ### 1) 사전 준비
 
 - Node.js 18+
@@ -58,6 +95,7 @@
 - C++17 컴파일러
 - RocksDB 및 링크 라이브러리(`snappy`, `zstd`, `zlib`, `bz2`, optional `lz4`)
 
+<a id="toc-quick-start-2"></a>
 ### 2) 환경 파일 준비
 
 ```bash
@@ -66,6 +104,7 @@ cp ingress/.env.example ingress/.env
 cp stress_test/.env.example stress_test/.env
 ```
 
+<a id="toc-quick-start-3"></a>
 ### 3) Node 의존성 설치
 
 ```bash
@@ -73,6 +112,7 @@ cd ingress && npm install
 cd ../node/server/backend && npm install
 ```
 
+<a id="toc-quick-start-4"></a>
 ### 4) KVS 빌드
 
 ```bash
@@ -81,10 +121,12 @@ cmake -S . -B build
 cmake --build build -j"$(nproc)"
 ```
 
+<a id="toc-run-order"></a>
 ## 실행 순서
 
 각 프로세스는 별도 터미널에서 실행하는 것을 권장합니다.
 
+<a id="toc-run-order-1"></a>
 ### 1) KVS 실행
 
 ```bash
@@ -92,6 +134,7 @@ cd /root/2025/clustering_project
 ENV_PATH=/root/2025/clustering_project/node/.env ./node/kvs/build/kvsd
 ```
 
+<a id="toc-run-order-2"></a>
 ### 2) Backend 실행
 
 ```bash
@@ -99,6 +142,7 @@ cd /root/2025/clustering_project
 ENV_PATH=/root/2025/clustering_project/node/.env node node/server/backend/server.js
 ```
 
+<a id="toc-run-order-3"></a>
 ### 3) Ingress 실행
 
 ```bash
@@ -106,6 +150,7 @@ cd /root/2025/clustering_project
 ENV_PATH=/root/2025/clustering_project/ingress/.env node ingress/server.js
 ```
 
+<a id="toc-run-order-4"></a>
 ### 4) 헬스체크
 
 ```bash
@@ -113,8 +158,10 @@ curl http://<ingress-host>:8080/healthz
 curl http://<backend-host>:3000/healthz
 ```
 
+<a id="toc-experiment-setup"></a>
 ## 실험 세팅
 
+<a id="toc-experiment-setup-a"></a>
 ### A. 계정 시드 생성 (`create_account.js`)
 
 `create_account.js`는 `POST /api/register -> POST /api/login -> GET /api/me`를 순서대로 수행해 계정 생성 및 인증 가능 여부를 검증하고, 결과를 `create_accounts_trace.json`으로 기록합니다.
@@ -134,6 +181,7 @@ node create_account.js
 - `REQUEST_TIMEOUT_MS`, `REQUEST_RETRIES`
 - `TRACE_PATH`
 
+<a id="toc-experiment-setup-b"></a>
 ### B. 부하 테스트 (`stress_test/`)
 
 ```bash
@@ -145,24 +193,15 @@ node max_users_1hz.js
 - `http_stress.js`: 고정 타겟에 연속 요청을 보내며 RPS/오류율 확인
 - `max_users_1hz.js`: 사용자당 1Hz(`POST + GET`) 기준 최대 동시 사용자 범위 탐색
 
+<a id="toc-env-guide"></a>
 ## 환경변수 파일 가이드
 
 - `node/.env`: 개별 노드(KVS + Backend) 설정
 - `ingress/.env`: Ingress 라우팅 및 보호 정책 설정
 - `stress_test/.env`: 실험 강도, 성공 기준, 타임아웃 설정
 
+<a id="toc-experiment-result"></a>
 ## 실험 과정 및 결과 (`result/` 기준)
-
-## 목차
-
-- [1) 실험 인프라](#main-sec-1)
-- [2) 실험 조건](#main-sec-2)
-- [3) 판정 기준](#main-sec-3)
-- [4) 핵심 결과 (CSV 집계)](#main-sec-4)
-- [5-1) 성공률 그래프](#main-sec-5-1)
-- [5-2) create_post 지연시간 그래프](#main-sec-5-2)
-- [5-3) list_posts 지연시간 그래프](#main-sec-5-3)
-- [6) 그래프 재생성](#main-sec-6)
 
 <a id="main-sec-1"></a>
 <details>
@@ -322,6 +361,7 @@ python graph.py
 
 </details>
 
+<a id="toc-git-policy"></a>
 ## Git 추적 정책
 
 현재 `.gitignore`는 아래만 제외합니다.

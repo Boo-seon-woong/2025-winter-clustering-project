@@ -33,9 +33,11 @@ def parse_users_from_filename(fname):
 def parse_stage_summary(text):
     out = {}
 
-    m = re.search(r"cycle_ok=(\d+)/(\d+) \(([\d.]+)%\)", text)
-    if m:
-        out["cycle_success_rate"] = float(m.group(3))
+    # progress 라인에도 cycle_ok가 나오므로, "마지막" 매치를 최종 결과로 간주
+    matches = re.findall(r"cycle_ok=(\d+)/(\d+)\s+\(([\d.]+)%\)", text)
+    if matches:
+        # (ok, total, pct) 중 pct
+        out["cycle_success_rate"] = float(matches[-1][2])
 
     return out
 
