@@ -215,7 +215,7 @@ All test nodes were configured with identical specs.
 
 Topology:
 
-- `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = total 3 nodes
+- `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = total 2 nodes
 - `3-Node`: `(3node) + (ingress + max_users_1hz.js)` = total 4 nodes
 
 </details>

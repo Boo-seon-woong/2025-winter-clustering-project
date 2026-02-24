@@ -26,7 +26,7 @@
 
 토폴로지:
 
-- `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = 총 3개 노드
+- `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = 총 2개 노드
 - `3-Node`: `(3node) + (ingress + max_users_1hz.js)` = 총 4개 노드
 
 </details>
