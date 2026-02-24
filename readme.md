@@ -9,7 +9,7 @@
 # Clustering Project
 ### RocksDB 기반 분산 KVS + Node.js Backend + Ingress 실험 환경
 
-고부하 환경에서 안정성, 지연 시간, 확장성을 검증하기 위한 멀티노드 실험 프로젝트입니다.
+고부하 환경에서 안정성, 지연 시간, 확장성을 검증하기 위한 분산 환경 실험 프로젝트입니다.
 
 </div>
 
@@ -197,162 +197,162 @@ node max_users_1hz.js
 <details>
 <summary><strong>9. 실험 과정 및 결과 (`result/` 기준)</strong></summary>
 
-<a id="main-sec-1"></a>
-<details>
-<summary><strong>1) 실험 인프라</strong></summary>
+  <a id="main-sec-1"></a>
+  <details>
+  <summary><strong>9-1) 실험 인프라</strong></summary>
 
-모든 실험 노드는 동일 스펙으로 구성했습니다.
+  모든 실험 노드는 동일 스펙으로 구성했습니다.
 
-- Provider: Kamatera (Tokyo)
-- OS: Ubuntu 24.04 64bit
-- Availability Type
-- vCPU: 2
-- RAM: 2GB
-- SSD: 20GB
+  - Provider: Kamatera (Tokyo)
+  - OS: Ubuntu 24.04 64bit
+  - Availability Type
+  - vCPU: 2
+  - RAM: 2GB
+  - SSD: 20GB
 
-토폴로지 구성:
+  토폴로지 구성:
 
-- `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = 총 3개 노드
-- `3-Node`: `(3node) + (ingress + max_users_1hz.js)` = 총 4개 노드
+  - `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = 총 3개 노드
+  - `3-Node`: `(3node) + (ingress + max_users_1hz.js)` = 총 4개 노드
 
-</details>
+  </details>
 
-<a id="main-sec-2"></a>
-<details>
-<summary><strong>2) 실험 조건</strong></summary>
+  <a id="main-sec-2"></a>
+  <details>
+  <summary><strong>9-2) 실험 조건</strong></summary>
 
-`max_users_1hz.js` 기준으로 아래 설정을 사용했고, 실험 중 변경한 값은 `USERS`, `BASE_URL`만입니다.
-문서에는 주소 노출을 피하기 위해 `BASE_URL`을 마스킹했습니다.
+  `max_users_1hz.js` 기준으로 아래 설정을 사용했고, 실험 중 변경한 값은 `USERS`, `BASE_URL`만입니다.
+  문서에는 주소 노출을 피하기 위해 `BASE_URL`을 마스킹했습니다.
 
-```dotenv
-USERS=1000
-# Common
-BASE_URL=http://<ingress-host>:8080
-REQUEST_TIMEOUT_MS=3000
-WORKERS=4
-PROGRESS_INTERVAL_SEC=5
+  ```dotenv
+  USERS=1000
+  # Common
+  BASE_URL=http://<ingress-host>:8080
+  REQUEST_TIMEOUT_MS=3000
+  WORKERS=4
+  PROGRESS_INTERVAL_SEC=5
 
-# http_stress.js
-TARGET=http://<ingress-host>:8080/healthz
-METHOD=GET
-CONCURRENCY_PER_WORKER=256
-DURATION_SEC=30
-TARGET_HZ=1
-MAX_SOCKETS_PER_WORKER=1024
-KEEP_ALIVE=true
-PRINT_INTERVAL_MS=1000
+  # http_stress.js
+  TARGET=http://<ingress-host>:8080/healthz
+  METHOD=GET
+  CONCURRENCY_PER_WORKER=256
+  DURATION_SEC=30
+  TARGET_HZ=1
+  MAX_SOCKETS_PER_WORKER=1024
+  KEEP_ALIVE=true
+  PRINT_INTERVAL_MS=1000
 
-# max_users_1hz.js
-PASSWORD=Passw0rd!
-EMAIL_PREFIX=k6user
-EMAIL_DOMAIN=example.com
-USER_START_INDEX=1
-USER_START_SPREAD_MS=0
-GET_PATH=/api/posts
-POST_PATH=/api/posts
-MIN_LOGIN_OK_RATE=0.98
-MIN_CYCLE_OK_RATE=0.98
-POST_P95_MS=1500
-GET_P95_MS=1500
-LOGIN_CONCURRENCY=64
-```
+  # max_users_1hz.js
+  PASSWORD=Passw0rd!
+  EMAIL_PREFIX=k6user
+  EMAIL_DOMAIN=example.com
+  USER_START_INDEX=1
+  USER_START_SPREAD_MS=0
+  GET_PATH=/api/posts
+  POST_PATH=/api/posts
+  MIN_LOGIN_OK_RATE=0.98
+  MIN_CYCLE_OK_RATE=0.98
+  POST_P95_MS=1500
+  GET_P95_MS=1500
+  LOGIN_CONCURRENCY=64
+  ```
 
-</details>
+  </details>
 
-<a id="main-sec-3"></a>
-<details>
-<summary><strong>3) 판정 기준</strong></summary>
+  <a id="main-sec-3"></a>
+  <details>
+  <summary><strong>9-3) 판정 기준</strong></summary>
 
-각 사용자 구간(stage)은 아래 기준을 모두 만족하면 `pass=yes`로 판정:
+  각 사용자 구간(stage)은 아래 기준을 모두 만족하면 `pass=yes`로 판정:
 
-- `cycle_ok_rate >= 98%`
-- `login_ok_rate >= 98%`
-- `create_post_p95 <= 1500ms`
-- `list_posts_p95 <= 1500ms`
+  - `cycle_ok_rate >= 98%`
+  - `login_ok_rate >= 98%`
+  - `create_post_p95 <= 1500ms`
+  - `list_posts_p95 <= 1500ms`
 
-</details>
+  </details>
 
-<a id="main-sec-4"></a>
-<details>
-<summary><strong>4) 핵심 결과 (CSV 집계)</strong></summary>
+  <a id="main-sec-4"></a>
+  <details>
+  <summary><strong>9-4) 핵심 결과 (CSV 집계)</strong></summary>
 
-데이터 소스: `result/full_experiment_records.csv`
+  데이터 소스: `result/full_experiment_records.csv`
 
-| 항목 | Single Node | 3-Node |
-|---|---:|---:|
-| 기준 충족 최대 사용자 수 | 1500 | 2000 |
-| 1750 users cycle 성공률 | 81.36% | 99.99% |
-| 2000 users cycle 성공률 | 59.71% | 100.00% |
-| 2000 users create 성공률 | 79.73% | 100.00% |
-| 2000 users list 성공률 | 73.04% | 100.00% |
-| 2500 users cycle 성공률 | 52.09% | 96.21% |
-| 3000 users cycle 성공률 | 62.61% | 95.72% |
+  | 항목 | Single Node | 3-Node |
+  |---|---:|---:|
+  | 기준 충족 최대 사용자 수 | 1500 | 2000 |
+  | 1750 users cycle 성공률 | 81.36% | 99.99% |
+  | 2000 users cycle 성공률 | 59.71% | 100.00% |
+  | 2000 users create 성공률 | 79.73% | 100.00% |
+  | 2000 users list 성공률 | 73.04% | 100.00% |
+  | 2500 users cycle 성공률 | 52.09% | 96.21% |
+  | 3000 users cycle 성공률 | 62.61% | 95.72% |
 
-관찰 포인트:
+  관찰 포인트:
 
-- `Single Node`는 1750 users부터 성공률이 급격히 하락했고, 통과 기준은 1500 users에서 멈췄습니다.
-- `3-Node`는 2000 users까지 기준을 만족했으며, 고부하 구간(2000+)에서도 성공률 하락 폭이 상대적으로 작았습니다.
-- 다만 `3-Node`도 2500 users 이후에는 `cycle_ok_rate` 또는 지연시간 기준을 넘어서기 시작해 `pass=no`가 발생했습니다.
+  - `Single Node`는 1750 users부터 성공률이 급격히 하락했고, 통과 기준은 1500 users에서 멈췄습니다.
+  - `3-Node`는 2000 users까지 기준을 만족했으며, 고부하 구간(2000+)에서도 성공률 하락 폭이 상대적으로 작았습니다.
+  - 다만 `3-Node`도 2500 users 이후에는 `cycle_ok_rate` 또는 지연시간 기준을 넘어서기 시작해 `pass=no`가 발생했습니다.
 
-</details>
+  </details>
 
-<a id="main-sec-5-1"></a>
-<details>
-<summary><strong>5-1) 성공률 그래프</strong></summary>
+  <a id="main-sec-5-1"></a>
+  <details>
+  <summary><strong>9-5-1) 성공률 그래프</strong></summary>
 
-<p>
-  <img src="./result/create_success_rate.png" alt="create_success_rate" width="32%" />
-  <img src="./result/list_success_rate.png" alt="list_success_rate" width="32%" />
-  <img src="./result/cycle_success_rate.png" alt="cycle_success_rate" width="32%" />
-</p>
+  <p>
+    <img src="./result/create_success_rate.png" alt="create_success_rate" width="32%" />
+    <img src="./result/list_success_rate.png" alt="list_success_rate" width="32%" />
+    <img src="./result/cycle_success_rate.png" alt="cycle_success_rate" width="32%" />
+  </p>
 
-</details>
+  </details>
 
-<a id="main-sec-5-2"></a>
-<details>
-<summary><strong>5-2) create_post 지연시간 그래프</strong></summary>
+  <a id="main-sec-5-2"></a>
+  <details>
+  <summary><strong>9-5-2) create_post 지연시간 그래프</strong></summary>
 
-<p>
-  <img src="./result/create_post_min.png" alt="create_post_min" width="32%" />
-  <img src="./result/create_post_mean.png" alt="create_post_mean" width="32%" />
-  <img src="./result/create_post_max.png" alt="create_post_max" width="32%" />
-</p>
-<p>
-  <img src="./result/create_post_p95.png" alt="create_post_p95" width="32%" />
-  <img src="./result/create_post_p99.png" alt="create_post_p99" width="32%" />
-  <img src="./result/create_post_p99.9.png" alt="create_post_p99.9" width="32%" />
-</p>
+  <p>
+    <img src="./result/create_post_min.png" alt="create_post_min" width="32%" />
+    <img src="./result/create_post_mean.png" alt="create_post_mean" width="32%" />
+    <img src="./result/create_post_max.png" alt="create_post_max" width="32%" />
+  </p>
+  <p>
+    <img src="./result/create_post_p95.png" alt="create_post_p95" width="32%" />
+    <img src="./result/create_post_p99.png" alt="create_post_p99" width="32%" />
+    <img src="./result/create_post_p99.9.png" alt="create_post_p99.9" width="32%" />
+  </p>
 
-</details>
+  </details>
 
-<a id="main-sec-5-3"></a>
-<details>
-<summary><strong>5-3) list_posts 지연시간 그래프</strong></summary>
+  <a id="main-sec-5-3"></a>
+  <details>
+  <summary><strong>9-5-3) list_posts 지연시간 그래프</strong></summary>
 
-<p>
-  <img src="./result/list_posts_min.png" alt="list_posts_min" width="32%" />
-  <img src="./result/list_posts_mean.png" alt="list_posts_mean" width="32%" />
-  <img src="./result/list_posts_max.png" alt="list_posts_max" width="32%" />
-</p>
-<p>
-  <img src="./result/list_posts_p95.png" alt="list_posts_p95" width="32%" />
-  <img src="./result/list_posts_p99.png" alt="list_posts_p99" width="32%" />
-  <img src="./result/list_posts_p99.9.png" alt="list_posts_p99.9" width="32%" />
-</p>
+  <p>
+    <img src="./result/list_posts_min.png" alt="list_posts_min" width="32%" />
+    <img src="./result/list_posts_mean.png" alt="list_posts_mean" width="32%" />
+    <img src="./result/list_posts_max.png" alt="list_posts_max" width="32%" />
+  </p>
+  <p>
+    <img src="./result/list_posts_p95.png" alt="list_posts_p95" width="32%" />
+    <img src="./result/list_posts_p99.png" alt="list_posts_p99" width="32%" />
+    <img src="./result/list_posts_p99.9.png" alt="list_posts_p99.9" width="32%" />
+  </p>
 
-</details>
+  </details>
 
-<a id="main-sec-6"></a>
-<details>
-<summary><strong>6) 그래프 재생성</strong></summary>
+  <a id="main-sec-6"></a>
+  <details>
+  <summary><strong>9-6) 그래프 재생성</strong></summary>
 
-```bash
-cd /root/2025/clustering_project/result
-python graph.py
-```
+  ```bash
+  cd /root/2025/clustering_project/result
+  python graph.py
+  ```
 
-`graph.py`는 `full_experiment_records.csv`를 파싱해 위 PNG 파일들을 다시 생성합니다.
+  `graph.py`는 `full_experiment_records.csv`를 파싱해 위 PNG 파일들을 다시 생성합니다.
 
-</details>
+  </details>
 
 </details>
