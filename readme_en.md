@@ -206,7 +206,7 @@ node max_users_1hz.js
 
 All test nodes were configured with identical specs.
 
-- Provider: Kamatera (Tokyo)
+- Provider: Kamatera (server location:Tokyo)
 - OS: Ubuntu 24.04 64bit
 - Availability Type
 - vCPU: 2

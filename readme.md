@@ -206,7 +206,7 @@ node max_users_1hz.js
 
 모든 실험 노드는 동일 스펙으로 구성했습니다.
 
-- Provider: Kamatera (Tokyo)
+- Provider: Kamatera (server location:Tokyo)
 - OS: Ubuntu 24.04 64bit
 - Availability Type
 - vCPU: 2
