@@ -153,7 +153,20 @@ node max_users_1hz.js
 
 ## 실험 과정 및 결과 (`result/` 기준)
 
-### 1) 실험 인프라
+## 목차
+
+- [1) 실험 인프라](#main-sec-1)
+- [2) 실험 조건](#main-sec-2)
+- [3) 판정 기준](#main-sec-3)
+- [4) 핵심 결과 (CSV 집계)](#main-sec-4)
+- [5-1) 성공률 그래프](#main-sec-5-1)
+- [5-2) create_post 지연시간 그래프](#main-sec-5-2)
+- [5-3) list_posts 지연시간 그래프](#main-sec-5-3)
+- [6) 그래프 재생성](#main-sec-6)
+
+<a id="main-sec-1"></a>
+<details>
+<summary><strong>1) 실험 인프라</strong></summary>
 
 모든 실험 노드는 동일 스펙으로 구성했습니다.
 
@@ -169,7 +182,11 @@ node max_users_1hz.js
 - `Single Node`: `(1node) + (ingress + max_users_1hz.js)` = 총 3개 노드
 - `3-Node`: `(3node) + (ingress + max_users_1hz.js)` = 총 4개 노드
 
-### 2) 실험 조건
+</details>
+
+<a id="main-sec-2"></a>
+<details>
+<summary><strong>2) 실험 조건</strong></summary>
 
 `max_users_1hz.js` 기준으로 아래 설정을 사용했고, 실험 중 변경한 값은 `USERS`, `BASE_URL`만입니다.
 문서에는 주소 노출을 피하기 위해 `BASE_URL`을 마스킹했습니다.
@@ -207,18 +224,26 @@ GET_P95_MS=1500
 LOGIN_CONCURRENCY=64
 ```
 
-### 3) 데이터 소스 및 판정 기준
+</details>
 
-- 원본 집계: `result/full_experiment_records.csv`
-- 시각화: `result/*.png`
-- 파일명 규칙: `{users}_{single|3node}.txt`
-- 단계 통과 기준:
-  - `cycle_ok_rate >= 98%`
-  - `login_ok_rate >= 98%`
-  - `create_post_p95 <= 1500ms`
-  - `list_posts_p95 <= 1500ms`
+<a id="main-sec-3"></a>
+<details>
+<summary><strong>3) 판정 기준</strong></summary>
 
-### 4) 핵심 결과 요약
+각 사용자 구간(stage)은 아래 기준을 모두 만족하면 `pass=yes`로 판정:
+
+- `cycle_ok_rate >= 98%`
+- `login_ok_rate >= 98%`
+- `create_post_p95 <= 1500ms`
+- `list_posts_p95 <= 1500ms`
+
+</details>
+
+<a id="main-sec-4"></a>
+<details>
+<summary><strong>4) 핵심 결과 (CSV 집계)</strong></summary>
+
+데이터 소스: `result/full_experiment_records.csv`
 
 | 항목 | Single Node | 3-Node |
 |---|---:|---:|
@@ -236,31 +261,66 @@ LOGIN_CONCURRENCY=64
 - `3-Node`는 2000 users까지 기준을 만족했으며, 고부하 구간(2000+)에서도 성공률 하락 폭이 상대적으로 작았습니다.
 - 다만 `3-Node`도 2500 users 이후에는 `cycle_ok_rate` 또는 지연시간 기준을 넘어서기 시작해 `pass=no`가 발생했습니다.
 
-### 5) 그래프
+</details>
 
-성공률 그래프:
+<a id="main-sec-5-1"></a>
+<details>
+<summary><strong>5-1) 성공률 그래프</strong></summary>
 
-![create_success_rate](./result/create_success_rate.png)
-![list_success_rate](./result/list_success_rate.png)
-![cycle_success_rate](./result/cycle_success_rate.png)
+<p>
+  <img src="./result/create_success_rate.png" alt="create_success_rate" width="32%" />
+  <img src="./result/list_success_rate.png" alt="list_success_rate" width="32%" />
+  <img src="./result/cycle_success_rate.png" alt="cycle_success_rate" width="32%" />
+</p>
 
-`create_post` 지연시간 그래프:
+</details>
 
-![create_post_min](./result/create_post_min.png)
-![create_post_mean](./result/create_post_mean.png)
-![create_post_max](./result/create_post_max.png)
-![create_post_p95](./result/create_post_p95.png)
-![create_post_p99](./result/create_post_p99.png)
-![create_post_p99.9](./result/create_post_p99.9.png)
+<a id="main-sec-5-2"></a>
+<details>
+<summary><strong>5-2) create_post 지연시간 그래프</strong></summary>
 
-`list_posts` 지연시간 그래프:
+<p>
+  <img src="./result/create_post_min.png" alt="create_post_min" width="32%" />
+  <img src="./result/create_post_mean.png" alt="create_post_mean" width="32%" />
+  <img src="./result/create_post_max.png" alt="create_post_max" width="32%" />
+</p>
+<p>
+  <img src="./result/create_post_p95.png" alt="create_post_p95" width="32%" />
+  <img src="./result/create_post_p99.png" alt="create_post_p99" width="32%" />
+  <img src="./result/create_post_p99.9.png" alt="create_post_p99.9" width="32%" />
+</p>
 
-![list_posts_min](./result/list_posts_min.png)
-![list_posts_mean](./result/list_posts_mean.png)
-![list_posts_max](./result/list_posts_max.png)
-![list_posts_p95](./result/list_posts_p95.png)
-![list_posts_p99](./result/list_posts_p99.png)
-![list_posts_p99.9](./result/list_posts_p99.9.png)
+</details>
+
+<a id="main-sec-5-3"></a>
+<details>
+<summary><strong>5-3) list_posts 지연시간 그래프</strong></summary>
+
+<p>
+  <img src="./result/list_posts_min.png" alt="list_posts_min" width="32%" />
+  <img src="./result/list_posts_mean.png" alt="list_posts_mean" width="32%" />
+  <img src="./result/list_posts_max.png" alt="list_posts_max" width="32%" />
+</p>
+<p>
+  <img src="./result/list_posts_p95.png" alt="list_posts_p95" width="32%" />
+  <img src="./result/list_posts_p99.png" alt="list_posts_p99" width="32%" />
+  <img src="./result/list_posts_p99.9.png" alt="list_posts_p99.9" width="32%" />
+</p>
+
+</details>
+
+<a id="main-sec-6"></a>
+<details>
+<summary><strong>6) 그래프 재생성</strong></summary>
+
+```bash
+cd /root/2025/clustering_project/result
+python graph.py
+```
+
+`graph.py`는 `full_experiment_records.csv`를 파싱해 위 PNG 파일들을 다시 생성합니다.
+
+</details>
 
 ## Git 추적 정책
 
