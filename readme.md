@@ -204,7 +204,7 @@ node max_users_1hz.js
 <details>
 <summary><strong>9-1) 실험 인프라</strong></summary>
 
-모든 실험 노드는 동일 스펙으로 구성했습니다.
+서버는 kamatera에서 제공하는 클라우드 서버를 최대 4개까지 이용하였으며, 모든 실험 노드는 동일 스펙으로 구성했습니다.
 
 - Provider: Kamatera (server location:Tokyo)
 - OS: Ubuntu 24.04 64bit
