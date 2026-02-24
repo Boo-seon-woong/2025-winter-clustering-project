@@ -45,7 +45,8 @@
 - [Git 추적 정책](#toc-git-policy)
 
 <a id="toc-overview"></a>
-## 한눈에 보기
+<details>
+<summary><strong>한눈에 보기</strong></summary>
 
 | 영역 | 경로 | 역할 |
 |---|---|---|
@@ -53,23 +54,32 @@
 | Node (개별 노드) | `node/` | `kvs`(C++/RocksDB) + `server/backend`(Node.js API) |
 | 실험 도구 | `stress_test/`, `create_account.js` | 부하 생성, 사용자 계정 대량 생성, 실험 반복 자동화 |
 
+</details>
+
 <a id="toc-architecture"></a>
-## 아키텍처
+<details>
+<summary><strong>아키텍처</strong></summary>
 
 <p align="center">
   <img src="./img/Diagram.png" alt="클러스터 아키텍처 다이어그램" width="1000" />
 </p>
 
+</details>
+
 <a id="toc-key-features"></a>
-## 핵심 특징
+<details>
+<summary><strong>핵심 특징</strong></summary>
 
 - Ingress: least-inflight 라우팅, queue timeout 기반 load shedding, upstream circuit breaker
 - Backend: 무상태 토큰 인증, admission control, `/api/posts` 캐시와 중복 요청 억제
 - KVS: RocksDB 기반 분산 저장소, 노드 간 replication/fan-out read
 - 실험: Node 기반 경량 스트레스 테스트 + 계정 시드 스크립트
 
+</details>
+
 <a id="toc-repo-layout"></a>
-## 저장소 구조
+<details>
+<summary><strong>저장소 구조</strong></summary>
 
 ```text
 .
@@ -83,8 +93,11 @@
 └── readme_en.md             # English documentation
 ```
 
+</details>
+
 <a id="toc-quick-start"></a>
-## 빠른 시작
+<details>
+<summary><strong>빠른 시작</strong></summary>
 
 <a id="toc-quick-start-1"></a>
 ### 1) 사전 준비
@@ -121,8 +134,11 @@ cmake -S . -B build
 cmake --build build -j"$(nproc)"
 ```
 
+</details>
+
 <a id="toc-run-order"></a>
-## 실행 순서
+<details>
+<summary><strong>실행 순서</strong></summary>
 
 각 프로세스는 별도 터미널에서 실행하는 것을 권장합니다.
 
@@ -158,8 +174,11 @@ curl http://<ingress-host>:8080/healthz
 curl http://<backend-host>:3000/healthz
 ```
 
+</details>
+
 <a id="toc-experiment-setup"></a>
-## 실험 세팅
+<details>
+<summary><strong>실험 세팅</strong></summary>
 
 <a id="toc-experiment-setup-a"></a>
 ### A. 계정 시드 생성 (`create_account.js`)
@@ -193,15 +212,21 @@ node max_users_1hz.js
 - `http_stress.js`: 고정 타겟에 연속 요청을 보내며 RPS/오류율 확인
 - `max_users_1hz.js`: 사용자당 1Hz(`POST + GET`) 기준 최대 동시 사용자 범위 탐색
 
+</details>
+
 <a id="toc-env-guide"></a>
-## 환경변수 파일 가이드
+<details>
+<summary><strong>환경변수 파일 가이드</strong></summary>
 
 - `node/.env`: 개별 노드(KVS + Backend) 설정
 - `ingress/.env`: Ingress 라우팅 및 보호 정책 설정
 - `stress_test/.env`: 실험 강도, 성공 기준, 타임아웃 설정
 
+</details>
+
 <a id="toc-experiment-result"></a>
-## 실험 과정 및 결과 (`result/` 기준)
+<details>
+<summary><strong>실험 과정 및 결과 (`result/` 기준)</strong></summary>
 
 <a id="main-sec-1"></a>
 <details>
@@ -361,8 +386,11 @@ python graph.py
 
 </details>
 
+</details>
+
 <a id="toc-git-policy"></a>
-## Git 추적 정책
+<details>
+<summary><strong>Git 추적 정책</strong></summary>
 
 현재 `.gitignore`는 아래만 제외합니다.
 
@@ -371,3 +399,5 @@ python graph.py
 - Node DB 내용물: `node/**/db/**` (디렉터리 자체는 유지)
 
 즉, 위 항목 외에는 실험 코드와 설정을 모두 커밋하는 정책입니다.
+
+</details>
