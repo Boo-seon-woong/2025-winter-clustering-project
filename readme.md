@@ -13,40 +13,9 @@
 
 </div>
 
-## 전체 목차
-
-- [한눈에 보기](#toc-overview)
-- [아키텍처](#toc-architecture)
-- [핵심 특징](#toc-key-features)
-- [저장소 구조](#toc-repo-layout)
-- [빠른 시작](#toc-quick-start)
-- [사전 준비](#toc-quick-start-1)
-- [환경 파일 준비](#toc-quick-start-2)
-- [Node 의존성 설치](#toc-quick-start-3)
-- [KVS 빌드](#toc-quick-start-4)
-- [실행 순서](#toc-run-order)
-- [KVS 실행](#toc-run-order-1)
-- [Backend 실행](#toc-run-order-2)
-- [Ingress 실행](#toc-run-order-3)
-- [헬스체크](#toc-run-order-4)
-- [실험 세팅](#toc-experiment-setup)
-- [계정 시드 생성](#toc-experiment-setup-a)
-- [부하 테스트](#toc-experiment-setup-b)
-- [환경변수 파일 가이드](#toc-env-guide)
-- [실험 과정 및 결과](#toc-experiment-result)
-- [실험 인프라](#main-sec-1)
-- [실험 조건](#main-sec-2)
-- [판정 기준](#main-sec-3)
-- [핵심 결과 (CSV 집계)](#main-sec-4)
-- [성공률 그래프](#main-sec-5-1)
-- [create_post 지연시간 그래프](#main-sec-5-2)
-- [list_posts 지연시간 그래프](#main-sec-5-3)
-- [그래프 재생성](#main-sec-6)
-- [Git 추적 정책](#toc-git-policy)
-
 <a id="toc-overview"></a>
 <details>
-<summary><strong>한눈에 보기</strong></summary>
+<summary><strong>1. 한눈에 보기</strong></summary>
 
 | 영역 | 경로 | 역할 |
 |---|---|---|
@@ -58,7 +27,7 @@
 
 <a id="toc-architecture"></a>
 <details>
-<summary><strong>아키텍처</strong></summary>
+<summary><strong>2. 아키텍처</strong></summary>
 
 <p align="center">
   <img src="./img/Diagram.png" alt="클러스터 아키텍처 다이어그램" width="1000" />
@@ -68,7 +37,7 @@
 
 <a id="toc-key-features"></a>
 <details>
-<summary><strong>핵심 특징</strong></summary>
+<summary><strong>3. 핵심 특징</strong></summary>
 
 - Ingress: least-inflight 라우팅, queue timeout 기반 load shedding, upstream circuit breaker
 - Backend: 무상태 토큰 인증, admission control, `/api/posts` 캐시와 중복 요청 억제
@@ -79,7 +48,7 @@
 
 <a id="toc-repo-layout"></a>
 <details>
-<summary><strong>저장소 구조</strong></summary>
+<summary><strong>4. 저장소 구조</strong></summary>
 
 ```text
 .
@@ -97,7 +66,7 @@
 
 <a id="toc-quick-start"></a>
 <details>
-<summary><strong>빠른 시작</strong></summary>
+<summary><strong>5. 빠른 시작</strong></summary>
 
 <a id="toc-quick-start-1"></a>
 ### 1) 사전 준비
@@ -138,7 +107,7 @@ cmake --build build -j"$(nproc)"
 
 <a id="toc-run-order"></a>
 <details>
-<summary><strong>실행 순서</strong></summary>
+<summary><strong>6. 실행 순서</strong></summary>
 
 각 프로세스는 별도 터미널에서 실행하는 것을 권장합니다.
 
@@ -178,7 +147,7 @@ curl http://<backend-host>:3000/healthz
 
 <a id="toc-experiment-setup"></a>
 <details>
-<summary><strong>실험 세팅</strong></summary>
+<summary><strong>7. 실험 세팅</strong></summary>
 
 <a id="toc-experiment-setup-a"></a>
 ### A. 계정 시드 생성 (`create_account.js`)
@@ -216,7 +185,7 @@ node max_users_1hz.js
 
 <a id="toc-env-guide"></a>
 <details>
-<summary><strong>환경변수 파일 가이드</strong></summary>
+<summary><strong>8. 환경변수 파일 가이드</strong></summary>
 
 - `node/.env`: 개별 노드(KVS + Backend) 설정
 - `ingress/.env`: Ingress 라우팅 및 보호 정책 설정
@@ -226,7 +195,7 @@ node max_users_1hz.js
 
 <a id="toc-experiment-result"></a>
 <details>
-<summary><strong>실험 과정 및 결과 (`result/` 기준)</strong></summary>
+<summary><strong>9. 실험 과정 및 결과 (`result/` 기준)</strong></summary>
 
 <a id="main-sec-1"></a>
 <details>
@@ -385,19 +354,5 @@ python graph.py
 `graph.py`는 `full_experiment_records.csv`를 파싱해 위 PNG 파일들을 다시 생성합니다.
 
 </details>
-
-</details>
-
-<a id="toc-git-policy"></a>
-<details>
-<summary><strong>Git 추적 정책</strong></summary>
-
-현재 `.gitignore`는 아래만 제외합니다.
-
-- 의존성 코드: `**/node_modules/`
-- 비밀 설정: `**/.env` (`.env.example`은 커밋 가능)
-- Node DB 내용물: `node/**/db/**` (디렉터리 자체는 유지)
-
-즉, 위 항목 외에는 실험 코드와 설정을 모두 커밋하는 정책입니다.
 
 </details>
