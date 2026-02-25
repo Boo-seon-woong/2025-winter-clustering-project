@@ -225,7 +225,6 @@ node max_users_1hz.js
 <summary><strong>9-2) 실험 조건</strong></summary>
 
 `max_users_1hz.js` 기준으로 아래 설정을 사용했고, 실험 중 변경한 값은 `USERS`, `BASE_URL`만입니다.
-문서에는 주소 노출을 피하기 위해 `BASE_URL`을 마스킹했습니다.
 
 ```dotenv
 USERS=1000
