@@ -344,6 +344,20 @@ LOGIN_CONCURRENCY=64
 
 </details>
 
+<a id="main-sec-6"></a>
+<details>
+<summary><strong>9-6) 결론</strong></summary>
+
+이번 실험의 결론은 다음과 같습니다.
+
+- 동일 스펙 기준에서 `3-Node` 구성이 `Single Node` 대비 통과 가능한 최대 동시 사용자 수를 `1500 -> 2000`으로 확장했습니다.
+- 특히 `2000 users` 구간에서 `3-Node`는 `cycle/create/list` 성공률이 모두 `100%`로 유지되어 수평 확장 효과가 명확히 확인되었습니다.
+- 반면 `2500+ users` 구간부터는 `3-Node`도 지연시간(p95/p99)과 성공률 저하가 나타나며, 병목이 완전히 사라지지는 않았습니다.
+- 즉, 본 구조는 단일 노드 한계를 의미 있게 늦추지만, 더 높은 부하를 안정적으로 처리하려면 write 경로와 tail latency 완화에 대한 추가 최적화가 필요합니다.
+- 재실험 시 데이터 초기화는 소스코드 수정 없이 노드 운영 절차(노드별 `post` Column Family 초기화)로 수행 가능합니다.
+
+</details>
+
 </dd>
 </dl>
 
