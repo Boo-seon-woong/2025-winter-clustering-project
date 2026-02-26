@@ -195,7 +195,7 @@ node max_users_1hz.js
 
 <a id="toc-experiment-result"></a>
 <details>
-<summary><strong>9. 실험 과정 및 결과 (`result/` 기준)</strong></summary>
+<summary><strong>9. 실험 과정 및 결과</strong></summary>
 
 <dl>
 <dd>
