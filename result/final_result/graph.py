@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator
 
 # =========================
-# Style (IEEE-like)
+# Style
 # =========================
 plt.rcParams.update({
     "font.family": "serif",
