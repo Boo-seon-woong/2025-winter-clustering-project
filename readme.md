@@ -259,6 +259,11 @@ GET_P95_MS=1500
 LOGIN_CONCURRENCY=64
 ```
 
+반복 실험 실행 스크립트:
+- `Single Node`: `stress_test/single_experiment.sh`
+- `3-Node`: `stress_test/cluster_experiment.sh`
+- 두 스크립트 모두 기본값으로 `RUN_COUNT=5`, `USER_START=250`, `USER_STEP=250`, `USER_END=3000` 구간을 순회하며 결과를 기록합니다.
+
 </details>
 
 <a id="main-sec-3"></a>
@@ -285,27 +290,27 @@ LOGIN_CONCURRENCY=64
 집계 방식:
 - 각 사용자 구간(`users`)별 5회 반복 실험 평균값
 - `cycle 성공률 = cycle_ok_num / cycle_ok_den * 100`
-- `stage_pass`는 보조지표로만 사용(이진 판정 특성상 warm-up/outlier 영향이 큼)
+- `stage_pass`는 보조지표로만 사용(이진 판정 특성상 외적 요인에 민감)
 
 해석 원칙:
-- `warm-up 구간`과 `steady-state 구간`을 분리해 해석
+- 단일 구간 결과보다 `사용자 구간별 반복 평균 추세`를 우선 해석
 - `stage_pass 전체 통과`보다 고부하 연속 구간의 `성공률/지연시간 추세`를 우선 비교
 
 | 구간/지표 (5회 평균) | Single Node | 3-Node |
 |---|---:|---:|
-| Warm-up(1000 users) cycle 성공률 | 99.99% | 88.16% |
-| Warm-up(1000 users) cycle 표준편차 | 0.02pp | 26.43pp |
-| Steady-state(1250~1750) cycle 성공률 | 98.66% | 98.70% |
-| Steady-state(1250~1750) create/list 성공률 | 99.08% / 99.40% | 98.70% / 100.00% |
-| Stress(2000~3000) cycle 성공률 | 63.89% | 95.86% |
-| Stress(2000~3000) create/list 성공률 | 76.32% / 79.98% | 96.18% / 99.09% |
-| Stress(2000~3000) create/list p95 | 1369.8ms / 358.8ms | 1402.2ms / 746.6ms |
+| 중부하(1250~1750) cycle 성공률 | 98.66% | 98.70% |
+| 중부하(1250~1750) create/list 성공률 | 99.08% / 99.40% | 98.70% / 100.00% |
+| 고부하(2000~3000) cycle 성공률 | 63.89% | 95.86% |
+| 고부하(2000~3000) create/list 성공률 | 76.32% / 79.98% | 96.18% / 99.09% |
+| 고부하(2000~3000) create/list p95 | 1369.8ms / 358.8ms | 1402.2ms / 746.6ms |
+| 2000 users cycle 성공률 | 84.19% | 97.14% |
+| 3000 users cycle 성공률 | 60.64% | 95.81% |
 | `stage_pass=yes` 비율 (전체 구간, 보조) | 55.00% | 56.67% |
 
 관찰 포인트:
 
-- `3-Node`는 1000 users 구간에서 warm-up 민감도(분산)가 크게 나타났지만, 1250 users 이후에는 안정화되는 패턴을 보였습니다.
 - 고부하 구간(2000~3000 users)에서 `3-Node`의 cycle 성공률은 `Single Node` 대비 `+31.97pp` 높았습니다.
+- `3-Node`는 2000/3000 users 모두에서 cycle 성공률이 더 높아, 실패율 방어 측면의 이점이 확인됩니다.
 - 같은 구간에서 `3-Node`는 성공률 우위를 보이지만, `list_posts` p95는 더 높아지는 trade-off가 확인됩니다.
 
 </details>
@@ -352,12 +357,11 @@ LOGIN_CONCURRENCY=64
 
 `result/final_result` 기준(2026-02-26 ~ 2026-02-27, 각 구성 5회 반복) 결론은 다음과 같습니다.
 
-- `stage_pass` 전체 통과 횟수만으로 우열을 판단하면, warm-up 초기 실패가 큰 `3-Node` 특성을 과대 페널티할 수 있습니다.
-- `3-Node`는 초기 warm-up 구간(특히 1000 users)에서 변동성이 컸지만, warm 이후(1250~1750 users)에는 `Single Node`와 동급 수준으로 안정화됐습니다.
+- `stage_pass` 전체 통과 횟수는 이진 임계값 지표라서, 실험 간 간격/시스템 상태 같은 외적 요인의 영향을 크게 받을 수 있어 보조지표로만 해석하는 것이 적절합니다.
 - 실질 부하 구간(2000~3000 users)에서는 `3-Node`가 cycle/create/list 성공률에서 모두 뚜렷한 우위를 보여, 실패율 방어 관점의 수평 확장 효과가 명확했습니다.
 - 다만 같은 구간에서 `3-Node`의 tail latency(특히 `list_posts` p95/p99)는 더 높게 나타나므로, 운영 평가는 `성공률`과 `tail latency`를 동시 관리해야 합니다.
 
-정리하면, 이번 데이터는 `3-Node`가 warm-up 최적화 전제하에 고부하 안정성(성공률)에서 유의미한 이점을 제공하되, 지연시간 꼬리 구간 최적화가 함께 필요함을 보여줍니다.
+정리하면, 이번 데이터는 `3-Node`가 고부하 안정성(성공률)에서 유의미한 이점을 제공하되, 지연시간 꼬리 구간 최적화가 함께 필요함을 보여줍니다.
 
 </details>
 
