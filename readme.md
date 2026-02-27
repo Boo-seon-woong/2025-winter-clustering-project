@@ -278,23 +278,31 @@ LOGIN_CONCURRENCY=64
 <details>
 <summary><strong>9-4) 핵심 결과 (CSV 집계)</strong></summary>
 
-데이터 소스: `result/full_experiment_records.csv`
+데이터 소스:
+- `result/final_result/single_node_result.csv`
+- `result/final_result/three_node_result.csv`
 
-| 항목 | Single Node | 3-Node |
+집계 방식:
+- 각 사용자 구간(`users`)별 5회 반복 실험 평균값
+- `cycle 성공률 = cycle_ok_num / cycle_ok_den * 100`
+- `stage_pass 비율 = pass(yes) 비중`
+
+| 항목 | Single Node (5회 평균) | 3-Node (5회 평균) |
 |---|---:|---:|
-| 기준 충족 최대 사용자 수 | 1500 | 2000 |
-| 1750 users cycle 성공률 | 81.36% | 99.99% |
-| 2000 users cycle 성공률 | 59.71% | 100.00% |
-| 2000 users create 성공률 | 79.73% | 100.00% |
-| 2000 users list 성공률 | 73.04% | 100.00% |
-| 2500 users cycle 성공률 | 52.09% | 96.21% |
-| 3000 users cycle 성공률 | 62.61% | 95.72% |
+| `stage_pass=yes` 비율 100% 최대 사용자 수 | 1250 | 750 |
+| `stage_pass=yes` 비율 80% 이상 최대 사용자 수 | 1750 | 1500 |
+| 2000 users cycle 성공률 | 84.19% | 97.14% |
+| 2250 users cycle 성공률 | 66.67% | 96.72% |
+| 2500 users cycle 성공률 | 49.00% | 94.68% |
+| 3000 users cycle 성공률 | 60.64% | 95.81% |
+| 3000 users create 성공률 | 74.69% | 96.18% |
+| 3000 users list 성공률 | 78.24% | 98.80% |
 
 관찰 포인트:
 
-- `Single Node`는 1750 users부터 성공률이 급격히 하락했고, 통과 기준은 1500 users에서 멈췄습니다.
-- `3-Node`는 2000 users까지 기준을 만족했으며, 고부하 구간(2000+)에서도 성공률 하락 폭이 상대적으로 작았습니다.
-- 다만 `3-Node`도 2500 users 이후에는 `cycle_ok_rate` 또는 지연시간 기준을 넘어서기 시작해 `pass=no`가 발생했습니다.
+- 고부하 구간(2000+ users)에서 `3-Node`의 cycle/create/list 성공률은 `Single Node`보다 일관되게 높았습니다.
+- 반면 `stage_pass` 기준(성공률 + p95 임계값 동시 충족)은 실험 간 변동이 커서, 단일 지표보다 반복 실험 비율로 해석하는 것이 안전합니다.
+- 특히 `3-Node`는 요청을 더 많이 처리하면서 지연시간 분포가 넓어지는 경향이 있어, 성공률과 p95를 함께 보는 해석이 필요합니다.
 
 </details>
 
@@ -303,9 +311,9 @@ LOGIN_CONCURRENCY=64
 <summary><strong>9-5-1) 성공률 그래프</strong></summary>
 
 <p>
-  <img src="./result/create_success_rate.png" alt="create_success_rate" width="32%" />
-  <img src="./result/list_success_rate.png" alt="list_success_rate" width="32%" />
-  <img src="./result/cycle_success_rate.png" alt="cycle_success_rate" width="32%" />
+  <img src="./result/final_result/create_success.png" alt="create_success" width="32%" />
+  <img src="./result/final_result/list_success.png" alt="list_success" width="32%" />
+  <img src="./result/final_result/cycle_success.png" alt="cycle_success" width="32%" />
 </p>
 
 </details>
@@ -315,14 +323,9 @@ LOGIN_CONCURRENCY=64
 <summary><strong>9-5-2) create_post 지연시간 그래프</strong></summary>
 
 <p>
-  <img src="./result/create_post_min.png" alt="create_post_min" width="32%" />
-  <img src="./result/create_post_mean.png" alt="create_post_mean" width="32%" />
-  <img src="./result/create_post_max.png" alt="create_post_max" width="32%" />
-</p>
-<p>
-  <img src="./result/create_post_p95.png" alt="create_post_p95" width="32%" />
-  <img src="./result/create_post_p99.png" alt="create_post_p99" width="32%" />
-  <img src="./result/create_post_p99.9.png" alt="create_post_p99.9" width="32%" />
+  <img src="./result/final_result/create_post_mean.png" alt="create_post_mean" width="32%" />
+  <img src="./result/final_result/create_post_p95.png" alt="create_post_p95" width="32%" />
+  <img src="./result/final_result/create_post_p99.png" alt="create_post_p99" width="32%" />
 </p>
 
 </details>
@@ -332,14 +335,9 @@ LOGIN_CONCURRENCY=64
 <summary><strong>9-5-3) list_posts 지연시간 그래프</strong></summary>
 
 <p>
-  <img src="./result/list_posts_min.png" alt="list_posts_min" width="32%" />
-  <img src="./result/list_posts_mean.png" alt="list_posts_mean" width="32%" />
-  <img src="./result/list_posts_max.png" alt="list_posts_max" width="32%" />
-</p>
-<p>
-  <img src="./result/list_posts_p95.png" alt="list_posts_p95" width="32%" />
-  <img src="./result/list_posts_p99.png" alt="list_posts_p99" width="32%" />
-  <img src="./result/list_posts_p99.9.png" alt="list_posts_p99.9" width="32%" />
+  <img src="./result/final_result/list_posts_mean.png" alt="list_posts_mean" width="32%" />
+  <img src="./result/final_result/list_posts_p95.png" alt="list_posts_p95" width="32%" />
+  <img src="./result/final_result/list_posts_p99.png" alt="list_posts_p99" width="32%" />
 </p>
 
 </details>
@@ -348,16 +346,12 @@ LOGIN_CONCURRENCY=64
 <details>
 <summary><strong>9-6) 결론</strong></summary>
 
-이번 실험의 결론은 다음과 같습니다.
+`result/final_result` 기준(2026-02-26 ~ 2026-02-27, 각 구성 5회 반복) 결론은 다음과 같습니다.
 
-- 동일 스펙 기준에서 `3-Node` 구성이 `Single Node` 대비 통과 가능한 최대 동시 사용자 수를 `1500 -> 2000`으로 확장했습니다.
-- `3-Node`는 동일 사용자 수 구간에서 `Single Node`보다 성공률 하락이 늦고 완만해, 과부하 구간에서 안정성이 더 높다는 점이 확인되었습니다.
-- 특히 `1750~2000 users` 구간에서 `Single Node`는 실패율이 빠르게 증가한 반면, `3-Node`는 높은 성공률을 유지해 수평 확장의 실효 이점이 명확했습니다.
-- 다만 `Single Node`의 실패가 과부하 시 빠른 실패(fast-fail) 위주로 발생해, `mean`이나 `p99` 같은 지표만 보면 구조적 차이가 기대만큼 크게 드러나지 않을 수 있습니다.
-- 따라서 본 결과는 평균 지연시간 단일 지표보다 `성공률`과 `통과 기준(pass)`을 함께 봐야 안정성 차이를 정확히 해석할 수 있음을 보여줍니다.
-- `2500+ users` 구간부터는 `3-Node`도 지연시간과 성공률 저하가 나타나므로, 추가 확장을 위해서는 write 경로와 tail latency 최적화가 필요합니다.
-
-- kamatera 대여 서버의 불안정함에 기인하여 실험 결과의 신뢰성 증가를 위해 현재 실험을 5회 재반복 측정 중이기에 실험 데이터 및 결론은 근 시일 내에 업데이트될 예정입니다.
+- `2000~3000 users` 구간에서 `3-Node`는 `Single Node` 대비 cycle/create/list 성공률을 더 높게 유지했습니다.
+- 단, `stage_pass`(성공률 + p95 임계값 동시 만족) 비율은 실험 변동성 영향이 커서, 단일 run 결과로 최대 수용량을 단정하기 어렵습니다.
+- `3-Node`는 고부하에서 처리량을 더 유지하는 대신 p95/p99 지연시간이 커지는 구간이 있어, 운영 기준은 `성공률 + tail latency`를 함께 관리해야 합니다.
+- 따라서 본 실험은 수평 확장이 실패율 방어에는 유효하지만, tail latency 최적화 없이는 고부하 통과율(`pass`)이 흔들릴 수 있음을 보여줍니다.
 
 </details>
 
